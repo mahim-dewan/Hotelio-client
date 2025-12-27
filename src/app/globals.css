@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* ===============================
+   DESIGN TOKENS
+================================ */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-dark);
+  background: var(--color-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+}
+/* ===============================
+   TAILWIND THEME MAPPING
+================================ */
+@theme {
+  /* Colors  */
+  --color-primary: #0d0d0d;
+  --color-secondary: #2772db;
+  --color-highlight: #db5f29;
+  --color-light: #f8fafc;
+  --color-muted: #dfdfdf;
+  --color-dark: #262626;
+
+  /* Fonts  */
+  --font-primary: var(--font-primary);
+  --font-secondary: var(--font-secondary);
+  --font-luxury: var(--font-luxury);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
