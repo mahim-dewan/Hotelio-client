@@ -1,8 +1,10 @@
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <div>
-      <h1>Hotelio website initiated</h1>
+      <HeroSection />
+      <div className="min-h-screen"></div>
     </div>
   );
 }

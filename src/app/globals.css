@@ -4,12 +4,6 @@
    DESIGN TOKENS
 ================================ */
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: var(--font-primary);
   color: var(--color-dark);
@@ -30,12 +24,12 @@ h6 {
 ================================ */
 @theme {
   /* Colors  */
-  --color-primary: #0d0d0d;
-  --color-secondary: #2772db;
+  --color-primary: #0c2b4e;
+  --color-secondary: ;
   --color-highlight: #db5f29;
   --color-light: #f8fafc;
   --color-muted: #dfdfdf;
-  --color-dark: #262626;
+  --color-dark: #0d0d0d;
 
   /* Fonts  */
   --font-primary: var(--font-primary);
@@ -43,9 +37,37 @@ h6 {
   --font-luxury: var(--font-luxury);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+  .btn-secondary {
+    @apply bg-dark text-light px-8 py-2.5 rounded-md transition-all duration-500;
   }
-} */
+  .btn-rounded {
+    @apply bg-primary text-light px-8 py-2.5 rounded-full transition-all duration-500;
+  }
+  .btn-rounded-outline {
+    @apply border border-primary text-light px-8 py-2.5 rounded-full transition-all duration-500;
+  }
+}
+
+/* Button Animation  */
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.rainbow::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  background-size: 50% 30%;
+  filter: blur(6px);
+  background-image: linear-gradient(#fff);
+  animation: rotate 4s linear infinite;
+}
