@@ -5,6 +5,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import Button from "./Button";
+import { useAuth } from "@/context/AuthProvider";
 
 /**
  * Navigation configuration
@@ -19,6 +21,7 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { state, dispatch } = useAuth();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,15 +79,16 @@ const Navbar = () => {
         <div
           className={`rainbow relative z-0 overflow-hidden p-0.5 hidden md:flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100 `}
         >
-          <button
+          <Button
             className={`px-8 text-sm py-3  rounded-full font-medium backdrop-blur ${
               showSolidNav
                 ? "bg-light text-primary/90"
                 : "bg-primary/90 text-white"
             }`}
+            onClick={() => dispatch({ type: "auth_box" })}
           >
             Login
-          </button>
+          </Button>
         </div>
 
         {/* ================= Mobile Menu Button ================= */}
@@ -110,6 +114,7 @@ export default Navbar;
 /* -------------------------------------------------------------------------- */
 
 const MobileMenu = ({ isOpen, onClose, pathname }) => {
+  const { dispatch } = useAuth();
   return (
     <aside
       className={`fixed top-0 left-0 w-2/3 h-screen border-r border-muted flex flex-col gap-4 items-center bg-light text-primary transition-all duration-500 md:hidden ${
@@ -137,9 +142,15 @@ const MobileMenu = ({ isOpen, onClose, pathname }) => {
       </nav>
 
       <div className="rainbow relative z-0 bg-primary overflow-hidden p-0.5 flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100">
-        <button className="px-8 text-sm py-3 text-light rounded-full font-medium bg-primary backdrop-blur">
+        <Button
+          onClick={() => {
+            onClose(false);
+            dispatch({ type: "auth_box" });
+          }}
+          className="px-8 text-sm py-3 text-light rounded-full font-medium bg-primary backdrop-blur"
+        >
           Login
-        </button>
+        </Button>
       </div>
     </aside>
   );

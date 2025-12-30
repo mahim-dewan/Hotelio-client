@@ -1,0 +1,79 @@
+import { Lock, MailIcon } from "lucide-react";
+import Image from "next/image";
+import React from "react";
+import { assets } from "../../public/assets/assets";
+import InputField from "./InputField";
+import Button from "./Button";
+import { useForm } from "react-hook-form";
+
+const LoginForm = () => {
+  const { register, handleSubmit } = useForm();
+
+  const handleLogin = async (data) => {
+    console.log(data);
+  };
+
+  return (
+    <div className="bg-primary text-light w-full md:p-6 p-4 text-left text-sm rounded-xl shadow-[0px_0px_10px_0px] shadow-black/10">
+      <h2 className="text-2xl font-semibold mb-6 text-center text-light">
+        Welcome back to Hotelio
+      </h2>
+      <form onSubmit={handleSubmit(handleLogin)}>
+        {/* Email Field  */}
+        <InputField
+          icon={<MailIcon className="text-muted/30" />}
+          type={"email"}
+          placeholder={"Email Address"}
+          {...register("email")}
+        />
+        {/* Password Field */}
+        <InputField
+          icon={<Lock className="text-muted/30" />}
+          type={"password"}
+          {...register("password")}
+          placeholder={"Password"}
+        />
+        <div className="text-right py-4">
+          <a className="text-muted underline" href="#">
+            Forgot Password
+          </a>
+        </div>
+        <Button
+          type="submit"
+          className="w-full mb-3 bg-secondary py-2.5 rounded-full text-light"
+        >
+          Log in
+        </Button>
+      </form>
+
+      <Button
+        type="button"
+        className="w-full flex items-center gap-2 justify-center mt-5 bg-dark/30 py-2.5 rounded-full text-white"
+      >
+        <Image
+          className="h-4 w-4 text-amber-300"
+          width={400}
+          height={400}
+          src={assets.googleIcon}
+          alt="appleLogo"
+        />
+        Continue with Google
+      </Button>
+      <Button
+        type="button"
+        className="w-full flex items-center gap-0.5 justify-center my-3 bg-light border border-muted/30 py-2.5 rounded-full text-gray-800"
+      >
+        <Image
+          className="h-4 w-4"
+          width={400}
+          height={400}
+          src={assets.facebookIcon}
+          alt="googleFavicon"
+        />
+        Continue with Facebook
+      </Button>
+    </div>
+  );
+};
+
+export default LoginForm;
