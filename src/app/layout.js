@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AuthProvider from "@/context/AuthProvider";
 import AuthModal from "@/components/AuthModal";
+import { Toaster } from "react-hot-toast";
 
 /* -------------------------------------------------------------------------- */
 /*                                Font Setup                                   */
@@ -37,7 +38,7 @@ export const metadata = {
   title: "Hotelio",
   description: "Book luxury rooms at affordable prices in Cox's Bazar.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
   openGraph: {
     title: "Hotelio Hotel",
@@ -75,8 +76,19 @@ export default function RootLayout({ children }) {
           <main className="min-h-screen w-full max-w-350 mx-auto">
             {/* Navbar appears on all pages */}
             <Navbar />
+
             {/* Login and Register Dialog Box  */}
             <AuthModal />
+
+            {/* Toast for notify */}
+            <Toaster
+              toastOptions={{
+                duration: 4000,
+                style: { background: "#272727", color: "#fff" },
+              }}
+              position="top-center"
+            />
+
             {/* Page content */}
             {children}
           </main>

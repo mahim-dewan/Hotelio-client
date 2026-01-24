@@ -6,19 +6,32 @@ import InputField from "./InputField";
 import Button from "./Button";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { api } from "@/lib/apis";
+import toast from "react-hot-toast";
+import { useAuth } from "@/context/AuthProvider";
+import { TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 
 // -----------------------------------
 // Login Form Component
 // -----------------------------------
 const LoginForm = () => {
+  const {dispatch} = useAuth()
   // Initialize React Hook Form
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{isSubmitting} } = useForm();
 
   // -----------------------------------
   // Handle login form submission
   // -----------------------------------
   const handleLogin = async (data) => {
-    console.log(data);
+    const res = await api.login(data);
+
+    if (res?.success && res?.message) {
+      toast.success(res.message);
+      dispatch(TOGGLE_AUTH_BOX())
+      return;
+    }
+    // Show Error
+    toast.error(res?.message || "Login failed");
   };
 
   return (
@@ -35,7 +48,7 @@ const LoginForm = () => {
           icon={<MailIcon className="text-muted/30" />}
           type={"email"}
           placeholder={"Email Address"}
-          {...register("email", {required: "Email is required"})}
+          {...register("email", { required: "Email is required" })}
         />
         {/* Password Field */}
         <InputField
@@ -57,7 +70,7 @@ const LoginForm = () => {
           type="submit"
           className="w-full mb-3 bg-secondary py-2.5 rounded-full text-light"
         >
-          Log in
+          {isSubmitting ? "Trying to login..." : "Login"}
         </Button>
       </form>
 
@@ -76,8 +89,9 @@ const LoginForm = () => {
         Continue with Google
       </Link>
 
-      {/* Facebook OAuth (placeholder) */}
-      <Button
+      {/* Facebook OAuth */}
+      <Link
+        href={`${process.env.NEXT_PUBLIC_BASE_API}/auth/facebook`}
         type="button"
         className="w-full flex items-center gap-0.5 justify-center my-3 bg-light border border-muted/30 py-2.5 rounded-full text-gray-800"
       >
@@ -89,7 +103,7 @@ const LoginForm = () => {
           alt="googleFavicon"
         />
         Continue with Facebook
-      </Button>
+      </Link>
     </div>
   );
 };

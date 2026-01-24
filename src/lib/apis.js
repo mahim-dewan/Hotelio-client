@@ -1,3 +1,4 @@
+import { handleApiError } from "@/utils/apiErrorHandler";
 import axios from "axios";
 
 // -----------------------------------
@@ -17,21 +18,43 @@ const axiosInstance = axios.create({
 });
 
 export const api = {
+  // Register a new user
+  register: async (data) => {
+    try {
+      const res = await axiosInstance.post(`/auth/register`, data);
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // User Login
+  login: async (data) => {
+    try {
+      const res = await axiosInstance.post(`/auth/login`, data);
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
   // verify user's token
   verifyToken: async () => {
     try {
-      const res = await axiosInstance.get(`${BASE_API}/auth/me`);
+      const res = await axiosInstance.get(`/auth/me`);
       return res.data;
-    } catch (err) {}
+    } catch (err) {
+      return handleApiError(err)
+    }
   },
 
   //  logged in user sign out
   signout: async () => {
     try {
-      const res = await axiosInstance.get(`${BASE_API}/auth/signout`);
+      const res = await axiosInstance.get(`/auth/signout`);
       return res.data;
     } catch (err) {
-      console.log(err);
+      return handleApiError(err);
     }
   },
 };
