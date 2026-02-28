@@ -5,6 +5,10 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import Button from "./Button";
+import { useAuth } from "@/context/AuthProvider";
+import { api } from "@/lib/apis";
+import { LOGOUT, TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 
 /**
  * Navigation configuration
@@ -19,11 +23,18 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { state, dispatch } = useAuth();
 
+  // Track scroll state for navbar background
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Mobile menu open/close state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Check if current page is homepage
   const isHome = pathname === "/";
+
+  // Navbar becomes solid on scroll or non-home pages
   const showSolidNav = isScrolled || !isHome;
 
   /**
@@ -38,12 +49,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /**
+   * Handle sign out
+   * Keeps API logic isolated
+   */
+  const handleSignOut = async () => {
+    await api.signout();
+    setIsMenuOpen(false);
+    dispatch(LOGOUT());
+  };
+
   return (
     <nav className={`${showSolidNav ? "sticky" : "fixed"} top-0 left-0 w-full`}>
       <div
         className={`mx-auto max-w-350 px-4 flex items-center justify-between transition-all duration-500 z-40 p-2 lg:p-4 ${
           showSolidNav
-            ? " bg-primary shadow-md text-light backdrop-blur-lg"
+            ? "bg-primary shadow-md text-light backdrop-blur-lg"
             : "bg-none"
         }`}
       >
@@ -73,19 +94,37 @@ const Navbar = () => {
         </div>
 
         {/* ================= Desktop (Right) Login Button ================= */}
-        <div
-          className={`rainbow relative z-0 overflow-hidden p-0.5 hidden md:flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100 `}
-        >
-          <button
-            className={`px-8 text-sm py-3  rounded-full font-medium backdrop-blur ${
-              showSolidNav
-                ? "bg-light text-primary/90"
-                : "bg-primary/90 text-white"
-            }`}
+        {state.user ? (
+          <div
+            className={`rainbow relative z-0 overflow-hidden p-0.5 hidden md:flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100 `}
           >
-            Login
-          </button>
-        </div>
+            <Button
+              className={`px-8 text-sm py-3  rounded-full font-medium backdrop-blur ${
+                showSolidNav
+                  ? "bg-light text-primary/90"
+                  : "bg-primary/90 text-white"
+              }`}
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </Button>
+          </div>
+        ) : (
+          <div
+            className={`rainbow relative z-0 overflow-hidden p-0.5 hidden md:flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100 `}
+          >
+            <Button
+              className={`px-8 text-sm py-3  rounded-full font-medium backdrop-blur ${
+                showSolidNav
+                  ? "bg-light text-primary/90"
+                  : "bg-primary/90 text-white"
+              }`}
+              onClick={() => dispatch(TOGGLE_AUTH_BOX())}
+            >
+              Sign In
+            </Button>
+          </div>
+        )}
 
         {/* ================= Mobile Menu Button ================= */}
         <div className="flex items-center gap-3 md:hidden">
@@ -96,6 +135,7 @@ const Navbar = () => {
         <MobileMenu
           isOpen={isMenuOpen}
           onClose={setIsMenuOpen}
+          onSignOut={handleSignOut}
           pathname={pathname}
         />
       </div>
@@ -109,7 +149,9 @@ export default Navbar;
 /*                                Sub Components                               */
 /* -------------------------------------------------------------------------- */
 
-const MobileMenu = ({ isOpen, onClose, pathname }) => {
+// Mobile sidebar
+const MobileMenu = ({ isOpen, onClose, onSignOut, pathname }) => {
+  const { state, dispatch } = useAuth();
   return (
     <aside
       className={`fixed top-0 left-0 w-2/3 h-screen border-r border-muted flex flex-col gap-4 items-center bg-light text-primary transition-all duration-500 md:hidden ${
@@ -136,11 +178,28 @@ const MobileMenu = ({ isOpen, onClose, pathname }) => {
         })}
       </nav>
 
-      <div className="rainbow relative z-0 bg-primary overflow-hidden p-0.5 flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100">
-        <button className="px-8 text-sm py-3 text-light rounded-full font-medium bg-primary backdrop-blur">
-          Login
-        </button>
-      </div>
+      {state.user ? (
+        <div className="rainbow relative z-0 bg-primary overflow-hidden p-0.5 flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100">
+          <Button
+            onClick={onSignOut}
+            className="px-8 text-sm py-3 text-light rounded-full font-medium bg-primary backdrop-blur"
+          >
+            Sign Out
+          </Button>
+        </div>
+      ) : (
+        <div className="rainbow relative z-0 bg-primary overflow-hidden p-0.5 flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100">
+          <Button
+            onClick={() => {
+              onClose(false);
+              dispatch(TOGGLE_AUTH_BOX());
+            }}
+            className="px-8 text-sm py-3 text-light rounded-full font-medium bg-primary backdrop-blur"
+          >
+            Sign In
+          </Button>
+        </div>
+      )}
     </aside>
   );
 };

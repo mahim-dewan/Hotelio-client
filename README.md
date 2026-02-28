@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hotelio (Client) 🏨
 
-## Getting Started
+The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and modern user experience for hotel booking and management. It focuses on performance, clean UI architecture, secure authentication flow, and seamless integration with the backend API.
 
-First, run the development server:
+## 🚀 Purpose
+#### The frontend is designed to:
+
+- Provide a responsive and modern hotel booking experience
+
+- Ensure secure user authentication and authorization handling
+
+- Maintain scalable and maintainable UI architecture
+
+- Deliver optimized performance using Next.js features
+
+## 🖇️ Quick Links
+
+[Live Link](https://hotel-hotelio.vercel.app/)  
+[Backend Repository](https://github.com/mahim-dewan/Hotelio-server)
+
+## ✨ Features
+
+- Fully responsive UI (Mobile, Tablet, Laptop)
+
+- SEO-friendly metadata (Open Graph & Twitter cards)
+
+- Authentication flow with local stratigy, google and facebook sign in
+  - Registration with OTP verification
+
+  - Secure login system
+
+  - Forgot & reset password flow
+
+  - JWT-based authentication handling
+
+   - Protected routes for authorized users
+
+## 🧑‍💻 Tech Stack
+
+- **Next.js** (App Router) for server-side rendering and routing
+
+- **Tailwind CSS** for utility-first styling
+
+- **React Hook Form + Zod** for forms and validation
+
+- **React Context API** for managing global state
+
+- **Axios** for API interactions
+
+## 📂 Project Structure
+
+```
+Hotelio-client/
+├── public/
+│
+├── src/
+│   ├── app/
+│   │   ├── (pages)
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   └── page.js
+│   │
+│   ├── components/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── lib/
+│   ├── reducers/
+│   ├── schemas/
+│   └── utils/
+│
+├── .env
+│
+├── .gitIgnore
+│
+├── eslint.config.mjs
+│
+├── jsconfig.json
+│
+├── next.config.mjs
+│
+├── package.json
+│
+├── postcss.config.mjs
+│
+└── README.md
+```
+
+## ⚙️ Installation
+
+```bash
+1. git clone https://github.com/mahim-dewan/Hotelio-client.git
+2. cd Hotelio-client
+3. npm install
+```
+
+#### Environment Variables
+
+Create a .env.local file in the client root:
+
+```bash
+NEXT_PUBLIC_SITE_URL="http://localhost:3000/"
+NEXT_PUBLIC_BASE_API="http://localhost:5000/api"
+```
+
+#### Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Run the Production Server
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+1. npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. npm run start
+```
+## 🧠 What I Learned
 
-## Learn More
+- Structuring scalable Next.js applications
 
-To learn more about Next.js, take a look at the following resources:
+- Implementing secure authentication flows
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Managing complex UI state efficiently
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Designing reusable and maintainable components
 
-## Deploy on Vercel
+- Following real-world frontend best practices
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contribution
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions, feedback, and suggestions are welcome. Feel free to open an issue or submit a pull request.
+## 📌 Author
+
+Mahim Dewan  
+MERN Stack Developer | Next.js Enthusiast
+
+### 🛜 Connect With Me
+
+[**Portfolio↗️**](https://mahim-dewan.vercel.app/) 
+[**GitHub↗️**](https://github.com/mahim-dewan)
+[**LinkedIn↗️**](https://www.linkedin.com/in/mahim-dewan79)
+[**Whatsapp↗️**](https://wa.me/8801568517556) 
