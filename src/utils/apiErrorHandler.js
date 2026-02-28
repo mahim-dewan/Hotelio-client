@@ -19,7 +19,7 @@ export const handleApiError = (
 
   // Network error (server down, unreachable)
   if (err.message && err.message.includes("Network Error")) {
-    message = "Server is unreachable. Please try again later.";
+    message = "Something went wrong. Please try again later.";
   }
 
   // Timeout error

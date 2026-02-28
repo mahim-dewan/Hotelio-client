@@ -1,9 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthProvider";
-import Button from "./Button";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import Button from "../Button";
 import { useEffect } from "react";
 import { X } from "lucide-react";
 import {
@@ -11,6 +9,8 @@ import {
   SET_REGISTER_MODE,
   TOGGLE_AUTH_BOX,
 } from "@/reducers/auth/actions";
+import RegisterContainer from "./RegisterContainer";
+import LoginContainer from "./LoginContainer";
 
 // -----------------------------------
 // Authentication Modal Component
@@ -72,8 +72,8 @@ const AuthModal = () => {
         </div>
 
         {/* Conditionally render forms */}
-        {mode === "login" && <LoginForm />}
-        {mode === "register" && <RegisterForm />}
+        {mode === "login" && <LoginContainer />}
+        {mode === "register" && <RegisterContainer />}
       </div>
     </div>
   );

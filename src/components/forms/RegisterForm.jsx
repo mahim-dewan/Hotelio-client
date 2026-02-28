@@ -1,56 +1,39 @@
-"use client";
-
+import React from "react";
 import InputField from "./InputField";
 import { Lock, MailIcon, User } from "lucide-react";
-import Button from "./Button";
+import Button from "../Button";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "@/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "@/lib/apis";
-import { useAuth } from "@/context/AuthProvider";
-import { SET_LOGIN_MODE } from "@/reducers/auth/actions";
-import toast from "react-hot-toast";
+import useRegistration, { AUTH_STEPS } from "@/hooks/useRegistration";
 
-// -----------------------------------
-// RegisterForm Component
-// -----------------------------------
-const RegisterForm = () => {
-  const { dispatch } = useAuth();
-
+const RegisterForm = ({ setStep, setUserData, defaultValues }) => {
   // Initialize form with Zod validation
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({ resolver: zodResolver(registerSchema) });
+  } = useForm({ resolver: zodResolver(registerSchema), defaultValues });
+  const { requestRegister } = useRegistration();
 
   // -----------------------------------
   // Handle form submission
   // -----------------------------------
-  const handleRegister = async (data) => {
-    const res = await api.register({
-      name: data?.name,
-      email: data?.email,
-      password: data?.password,
-    });
-
-    if (res?.success && res?.message) {
-      toast.success("Registration successfull. Please login here.");
-      dispatch(SET_LOGIN_MODE());
-      return;
+  const handleRegisterRequest = async (data) => {
+    const res = await requestRegister(data);
+    if (res) {
+      setUserData(data);
+      setStep(AUTH_STEPS.OTP);
     }
-
-    // Show error
-    toast.error(res?.message || "Registration failed.");
   };
 
   return (
-    <div className="bg-primary text-light w-full md:p-6 p-4 text-left text-sm rounded-xl shadow-[0px_0px_10px_0px] shadow-black/10">
-      {/* Title  */}
+    <div>
       <h2 className="text-2xl font-semibold mb-6 text-center text-light">
         Register a new account
       </h2>
-      <form onSubmit={handleSubmit(handleRegister)}>
+
+      <form onSubmit={handleSubmit(handleRegisterRequest)}>
         {/* Email Field  */}
         <InputField
           icon={<User className="text-muted/30" />}

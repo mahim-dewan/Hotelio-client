@@ -3,7 +3,7 @@ import { Inter, Poppins, Allerta_Stencil } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AuthProvider from "@/context/AuthProvider";
-import AuthModal from "@/components/AuthModal";
+import AuthModal from "@/components/auth/AuthModal";
 import { Toaster } from "react-hot-toast";
 
 /* -------------------------------------------------------------------------- */

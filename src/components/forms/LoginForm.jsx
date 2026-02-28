@@ -1,37 +1,28 @@
 import { Lock, MailIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { assets } from "../../public/assets/assets";
+import { assets } from "../../../public/assets/assets";
 import InputField from "./InputField";
-import Button from "./Button";
+import Button from "../Button";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { api } from "@/lib/apis";
-import toast from "react-hot-toast";
-import { useAuth } from "@/context/AuthProvider";
-import { TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 
 // -----------------------------------
 // Login Form Component
 // -----------------------------------
-const LoginForm = () => {
-  const {dispatch} = useAuth()
+const LoginForm = ({ setIsPasswordResetMode, login }) => {
   // Initialize React Hook Form
-  const { register, handleSubmit, formState:{isSubmitting} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
 
   // -----------------------------------
   // Handle login form submission
   // -----------------------------------
   const handleLogin = async (data) => {
-    const res = await api.login(data);
-
-    if (res?.success && res?.message) {
-      toast.success(res.message);
-      dispatch(TOGGLE_AUTH_BOX())
-      return;
-    }
-    // Show Error
-    toast.error(res?.message || "Login failed");
+    await login(data);
   };
 
   return (
@@ -60,9 +51,13 @@ const LoginForm = () => {
 
         {/* Forgot password link */}
         <div className="text-right py-4">
-          <a className="text-muted underline" href="#">
+          <Button
+            onClick={() => setIsPasswordResetMode(true)}
+            className="text-muted underline"
+            href="#"
+          >
             Forgot Password
-          </a>
+          </Button>
         </div>
 
         {/* Submit button */}

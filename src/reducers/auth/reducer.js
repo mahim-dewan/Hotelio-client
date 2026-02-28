@@ -16,6 +16,7 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         mode: "login",
+        
         isOpenAuthBox: !state.isOpenAuthBox,
       };
 

@@ -14,15 +14,12 @@ const AuthContext = createContext(null);
 // -----------------------------------
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialAuthState);
-  console.log(state);
 
   // -----------------------------------
   // Verify user on initial app load
   // (checks token stored in cookie)
   // -----------------------------------
   useEffect(() => {
-    console.log("DSD");
-
     const verifyUser = async () => {
       const res = await api.verifyToken();
       if (res?.success) {

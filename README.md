@@ -1,10 +1,21 @@
 # Hotelio (Client) 🏨
 
-A modern Next.js frontend for the Hotelio hotel booking platform. This client-side app focuses on performance, responsive design, clean architecture, and SEO best practices.
+The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and modern user experience for hotel booking and management. It focuses on performance, clean UI architecture, secure authentication flow, and seamless integration with the backend API.
+
+## 🚀 Purpose
+#### The frontend is designed to:
+
+- Provide a responsive and modern hotel booking experience
+
+- Ensure secure user authentication and authorization handling
+
+- Maintain scalable and maintainable UI architecture
+
+- Deliver optimized performance using Next.js features
 
 ## 🖇️ Quick Links
 
-[Live Link](https://localhost:3000)  
+[Live Link](https://hotel-hotelio.vercel.app/)  
 [Backend Repository](https://github.com/mahim-dewan/Hotelio-server)
 
 ## ✨ Features
@@ -14,6 +25,15 @@ A modern Next.js frontend for the Hotelio hotel booking platform. This client-si
 - SEO-friendly metadata (Open Graph & Twitter cards)
 
 - Authentication flow with local stratigy, google and facebook sign in
+  - Registration with OTP verification
+
+  - Secure login system
+
+  - Forgot & reset password flow
+
+  - JWT-based authentication handling
+
+   - Protected routes for authorized users
 
 ## 🧑‍💻 Tech Stack
 
@@ -22,6 +42,8 @@ A modern Next.js frontend for the Hotelio hotel booking platform. This client-si
 - **Tailwind CSS** for utility-first styling
 
 - **React Hook Form + Zod** for forms and validation
+
+- **React Context API** for managing global state
 
 - **Axios** for API interactions
 
@@ -41,9 +63,11 @@ Hotelio-client/
 │   │
 │   ├── components/
 │   ├── contexts/
+│   ├── hooks/
 │   ├── lib/
 │   ├── reducers/
-│   └── schemas/
+│   ├── schemas/
+│   └── utils/
 │
 ├── .env
 │
@@ -92,8 +116,29 @@ npm run dev
 
 2. npm run start
 ```
+## 🧠 What I Learned
 
+- Structuring scalable Next.js applications
+
+- Implementing secure authentication flows
+
+- Managing complex UI state efficiently
+
+- Designing reusable and maintainable components
+
+- Following real-world frontend best practices
+
+## 🤝 Contribution
+
+Contributions, feedback, and suggestions are welcome. Feel free to open an issue or submit a pull request.
 ## 📌 Author
 
 Mahim Dewan  
-Full Stack (MERN) Web Developer
+MERN Stack Developer | Next.js Enthusiast
+
+### 🛜 Connect With Me
+
+[**Portfolio↗️**](https://mahim-dewan.vercel.app/) 
+[**GitHub↗️**](https://github.com/mahim-dewan)
+[**LinkedIn↗️**](https://www.linkedin.com/in/mahim-dewan79)
+[**Whatsapp↗️**](https://wa.me/8801568517556) 
