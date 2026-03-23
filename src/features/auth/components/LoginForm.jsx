@@ -1,9 +1,9 @@
 import { Lock, MailIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { assets } from "../../../public/assets/assets";
-import InputField from "./InputField";
-import Button from "../Button";
+import { assets } from "../../../../public/assets/assets";
+import InputField from "../../../shared/forms/InputField";
+import Button from "@/shared/components/Button";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 

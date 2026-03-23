@@ -1,11 +1,13 @@
 import React from "react";
-import InputField from "./InputField";
+import InputField from "../../../shared/forms/InputField";
 import { Lock, MailIcon, User } from "lucide-react";
-import Button from "../Button";
+import Button from "@/shared/components/Button";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "@/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useRegistration, { AUTH_STEPS } from "@/hooks/useRegistration";
+import useRegistration, {
+  AUTH_STEPS,
+} from "@/features/auth/hooks/useRegistration";
 
 const RegisterForm = ({ setStep, setUserData, defaultValues }) => {
   // Initialize form with Zod validation

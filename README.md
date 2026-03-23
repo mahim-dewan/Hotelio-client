@@ -3,6 +3,7 @@
 The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and modern user experience for hotel booking and management. It focuses on performance, clean UI architecture, secure authentication flow, and seamless integration with the backend API.
 
 ## 🚀 Purpose
+
 #### The frontend is designed to:
 
 - Provide a responsive and modern hotel booking experience
@@ -33,7 +34,11 @@ The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and mode
 
   - JWT-based authentication handling
 
-   - Protected routes for authorized users
+  - Protected routes for authorized users
+
+- Interactive booking date range selection
+
+- Automatic disabled already booked dates
 
 ## 🧑‍💻 Tech Stack
 
@@ -46,6 +51,10 @@ The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and mode
 - **React Context API** for managing global state
 
 - **Axios** for API interactions
+
+- **date-fns** to play with date
+
+- **react-date-range** for booking date range select
 
 ## 📂 Project Structure
 
@@ -61,12 +70,19 @@ Hotelio-client/
 │   │   ├── layout.js
 │   │   └── page.js
 │   │
-│   ├── components/
+│   ├── constants/
 │   ├── contexts/
+│   ├── data/
+│   ├── features/
 │   ├── hooks/
 │   ├── lib/
 │   ├── reducers/
 │   ├── schemas/
+│   ├── shared/
+│   │   ├── components
+│   │   ├── forms
+│   │   └── layouts
+│   │
 │   └── utils/
 │
 ├── .env
@@ -100,6 +116,7 @@ Create a .env.local file in the client root:
 
 ```bash
 NEXT_PUBLIC_SITE_URL="http://localhost:3000/"
+
 NEXT_PUBLIC_BASE_API="http://localhost:5000/api"
 ```
 
@@ -116,6 +133,7 @@ npm run dev
 
 2. npm run start
 ```
+
 ## 🧠 What I Learned
 
 - Structuring scalable Next.js applications
@@ -131,6 +149,7 @@ npm run dev
 ## 🤝 Contribution
 
 Contributions, feedback, and suggestions are welcome. Feel free to open an issue or submit a pull request.
+
 ## 📌 Author
 
 Mahim Dewan  
@@ -138,7 +157,7 @@ MERN Stack Developer | Next.js Enthusiast
 
 ### 🛜 Connect With Me
 
-[**Portfolio↗️**](https://mahim-dewan.vercel.app/) 
+[**Portfolio↗️**](https://mahim-dewan.vercel.app/)
 [**GitHub↗️**](https://github.com/mahim-dewan)
 [**LinkedIn↗️**](https://www.linkedin.com/in/mahim-dewan79)
-[**Whatsapp↗️**](https://wa.me/8801568517556) 
+[**Whatsapp↗️**](https://wa.me/8801568517556)

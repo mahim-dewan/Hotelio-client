@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthProvider";
-import Button from "../Button";
+import Button from "@/shared/components/Button";
 import { useEffect } from "react";
 import { X } from "lucide-react";
 import {
@@ -39,7 +39,7 @@ const AuthModal = () => {
 
   return (
     // Modal backdrop
-    <div className="bg-dark/80 fixed inset-0 flex justify-center overflow-">
+    <div className="bg-dark/80 fixed inset-0 flex justify-center z-50">
       {/* Modal container */}
       <div className="m-5 flex flex-col items-start  gap-2 w-80 md:w-96 lg:w-112.5 mt-20">
         {/* Header section */}

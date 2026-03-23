@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LoginForm from "../forms/LoginForm";
-import ForgotPasswordForm from "../forms/ForgotPasswordForm";
-import useLogin from "@/hooks/useLogin";
+import LoginForm from "./LoginForm";
+import ForgotPasswordForm from "./ForgotPasswordForm";
+import useLogin from "@/features/auth/hooks/useLogin";
 
 const LoginContainer = () => {
   const [isPasswordResetMode, setIsPasswordResetMode] = useState(false);

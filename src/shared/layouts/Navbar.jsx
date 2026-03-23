@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "./Logo";
-import Button from "./Button";
+import Logo from "../components/Logo";
+import Button from "../components/Button";
 import { useAuth } from "@/context/AuthProvider";
 import { api } from "@/lib/apis";
 import { LOGOUT, TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
@@ -60,7 +60,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${showSolidNav ? "sticky" : "fixed"} top-0 left-0 w-full`}>
+    <nav
+      className={`${showSolidNav ? "sticky" : "fixed"} top-0 left-0 w-full z-40`}
+    >
       <div
         className={`mx-auto max-w-350 px-4 flex items-center justify-between transition-all duration-500 z-40 p-2 lg:p-4 ${
           showSolidNav

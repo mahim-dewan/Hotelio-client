@@ -1,10 +1,10 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Button from "../Button";
+import Button from "@/shared/components/Button";
 import { ChevronsLeft } from "lucide-react";
-import { AUTH_STEPS } from "@/hooks/useRegistration";
+import { AUTH_STEPS } from "@/features/auth/hooks/useRegistration";
 
-const OtpInput = ({
+const OtpInputBox = ({
   length = 6,
   setStep,
   onSubmit,
@@ -132,4 +132,4 @@ const OtpInput = ({
   );
 };
 
-export default OtpInput;
+export default OtpInputBox;

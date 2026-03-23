@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
-import OtpInput from "../forms/OtpInput";
-import RegisterForm from "../forms/RegisterForm";
-import useRegistration, { AUTH_STEPS } from "@/hooks/useRegistration";
+import OtpInputBox from "../../../shared/forms/OtpInputBox";
+import RegisterForm from "./RegisterForm";
+import useRegistration, {
+  AUTH_STEPS,
+} from "@/features/auth/hooks/useRegistration";
 
 // -----------------------------------
 // RegisterForm Component
@@ -56,7 +58,7 @@ const RegisterContainer = () => {
       )}
 
       {step === AUTH_STEPS.OTP && (
-        <OtpInput
+        <OtpInputBox
           setStep={setStep}
           onSubmit={handleRegistration}
           onResend={handleResend}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import InputField from "./InputField";
+import InputField from "../../../shared/forms/InputField";
 import { ChevronsLeft, IdCard, Lock, MailIcon } from "lucide-react";
-import Button from "../Button";
+import Button from "@/shared/components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSchema } from "@/schemas/auth.schema";
-import { PASSWORD_RESET_STEPS } from "@/hooks/useLogin";
+import { PASSWORD_RESET_STEPS } from "@/features/auth/hooks/useLogin";
 
 const ForgotPasswordForm = ({
   error,

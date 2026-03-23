@@ -1,21 +1,5 @@
-import { handleApiError } from "@/utils/apiErrorHandler";
-import axios from "axios";
-
-// -----------------------------------
-// Base API URL (from environment)
-// -----------------------------------
-const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
-
-// -----------------------------------
-// Axios instance with default config
-// -----------------------------------
-const axiosInstance = axios.create({
-  baseURL: BASE_API,
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import { handleApiError } from "@/lib/apiErrorHandler";
+import axiosInstance from "./axios";
 
 export const api = {
   // Request for a new registration

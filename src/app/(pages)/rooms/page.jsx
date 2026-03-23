@@ -1,9 +1,11 @@
-import React from 'react'
+import DiscountRooms from "@/features/rooms/components/DiscountRooms";
 
 const Rooms = () => {
   return (
-    <div>Rooms</div>
-  )
-}
+    <section>
+      <DiscountRooms />
+    </section>
+  );
+};
 
-export default Rooms
+export default Rooms;

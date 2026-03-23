@@ -71,3 +71,11 @@ h6 {
   background-image: linear-gradient(#fff);
   animation: rotate 4s linear infinite;
 }
+
+.rdrDayDisabled .rdrDayNumber span {
+  color: rgba(128, 128, 128, 0.452) !important;
+}
+
+.rdrDayDisabled {
+  background-color: transparent !important;
+}

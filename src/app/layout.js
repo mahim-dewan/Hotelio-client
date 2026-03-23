@@ -1,9 +1,9 @@
 // app/layout.tsx (Next.js 13+ App Router)
 import { Inter, Poppins, Allerta_Stencil } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/shared/layouts/Navbar";
 import AuthProvider from "@/context/AuthProvider";
-import AuthModal from "@/components/auth/AuthModal";
+import AuthModal from "@/features/auth/components/AuthModal";
 import { Toaster } from "react-hot-toast";
 
 /* -------------------------------------------------------------------------- */
