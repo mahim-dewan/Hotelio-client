@@ -5,6 +5,7 @@ export const initialAuthState = {
   isOpenAuthBox: false,
   mode: "login",
   user: null,
+  isAuthReady: false,
 };
 
 // -----------------------------
@@ -16,8 +17,14 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         mode: "login",
-        
+
         isOpenAuthBox: !state.isOpenAuthBox,
+      };
+
+    case "AUTH_READY":
+      return {
+        ...state,
+        isAuthReady: true,
       };
 
     case "SET_LOGIN_MODE":
