@@ -5,6 +5,7 @@ export const MyBookingContext = createContext();
 
 const MyBookingProvider = ({ children }) => {
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -14,6 +15,8 @@ const MyBookingProvider = ({ children }) => {
         setSelectedBooking,
         isModalOpen,
         setIsModalOpen,
+        isProcessing,
+        setIsProcessing,
       }}
     >
       {children}

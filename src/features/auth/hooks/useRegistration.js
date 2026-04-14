@@ -1,5 +1,5 @@
 import { useAuth } from "@/context/AuthProvider";
-import { api } from "@/lib/apis";
+import { apiClient } from "@/lib/apis-client";
 import { TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -27,7 +27,7 @@ const useRegistration = () => {
    * @returns {Boolean} success status
    */
   const requestRegister = async (payload) => {
-    const res = await api.requestRegister(payload);
+    const res = await apiClient.requestRegister(payload);
 
     if (res?.success) {
       toast.success(res?.message);
@@ -48,7 +48,7 @@ const useRegistration = () => {
     if (!payload) return false;
     setIsLoading(true);
 
-    const res = await api.verifyRegister(payload);
+    const res = await apiClient.verifyRegister(payload);
     if (res?.success) {
       toast.success(res?.message);
       dispatch(TOGGLE_AUTH_BOX());
@@ -70,7 +70,7 @@ const useRegistration = () => {
   const registerOtpResend = async (payload) => {
     if (!payload?.email) return;
 
-    const res = await api.resendRegistrationOtp(payload);
+    const res = await apiClient.resendRegistrationOtp(payload);
     if (res?.success) {
       toast.success(res?.message);
       return;

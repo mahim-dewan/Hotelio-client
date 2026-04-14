@@ -8,24 +8,22 @@ import {
   X,
   FileDown,
   Clock,
-  ChevronRight,
 } from "lucide-react";
 import Button from "@/shared/components/Button";
 import { useMyBooking } from "../hooks/useMyBooking";
+import { getBookingPaymentStatus } from "../utils/bookingPaymentStatus";
 
 const MyBookingCard = ({ booking }) => {
   const { setIsModalOpen, setSelectedBooking } = useMyBooking();
-  const paidPercent = booking.payment?.paymentPercentage || 0;
-  const isPartiallyPaid = paidPercent === 50;
-  const isFullyPaid = paidPercent === 100 || booking.isPaid;
-  const hasPaidSomething = isPartiallyPaid || isFullyPaid;
-  const isCanceled = booking.status === "canceled";
+  const {
+    isPartiallyPaid,
+    isFullyPaid,
+    hasPaidSomething,
+    isCanceled,
+    amountDue,
+  } = getBookingPaymentStatus(booking);
 
-  const amountDue = isPartiallyPaid
-    ? booking.totalPrice / 2
-    : booking.totalPrice;
-
-  const handlePay = (b) => {
+  const handlePayClick = (b) => {
     setSelectedBooking(b);
     setIsModalOpen(true);
   };
@@ -43,12 +41,14 @@ const MyBookingCard = ({ booking }) => {
               height={900}
               className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500"
             />
+
             <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/80 backdrop-blur-md px-1.5 py-0.5 rounded text-[8px] font-black border border-white/5 text-light">
               <Star size={8} className="text-highlight fill-highlight" />
               {booking?.room?.rating}
             </div>
           </div>
 
+          {/* Booking Details */}
           <div className="grow p-4 sm:p-6 flex flex-col justify-center min-w-0">
             <div className="flex justify-between items-start gap-2 mb-4">
               <div className="min-w-0">
@@ -70,6 +70,7 @@ const MyBookingCard = ({ booking }) => {
                     {booking.status}
                   </span>
                 </div>
+
                 <Link
                   href={`/rooms/${booking?.room?._id}`}
                   className="text-sm underline sm:text-xl font-bold text-light truncate leading-tight tracking-tight"
@@ -78,21 +79,25 @@ const MyBookingCard = ({ booking }) => {
                 </Link>
               </div>
 
-              <Link
-                href={`mybookings/${booking?._id}`}
-                className="flex items-center gap-1 text-[10px] font-black text-muted hover:text-secondary uppercase transition-colors px-2 py-1 shrink-0"
-              >
-                Details <ChevronRight size={12} />
-              </Link>
+              {/* Invoice Download */}
+              {hasPaidSomething && (
+                <Button
+                  className="p-2 text-muted hover:text-secondary hover:bg-secondary/10 rounded-xl transition-all border border-white/5"
+                  title="Download Invoice"
+                >
+                  <FileDown size={18} />
+                </Button>
+              )}
             </div>
 
+            {/* Checkin Checkout */}
             <div className="flex items-center gap-6 sm:gap-10 text-muted">
               <div className="min-w-0">
                 <p className="text-[8px] text-muted uppercase tracking-widest opacity-40 mb-0.5">
                   Check In
                 </p>
                 <p className="text-[10px] sm:text-xs font-bold text-light truncate">
-                  {booking.checkIn}
+                  {booking.checkIn.split("T")[0]}
                 </p>
                 <p className="text-[9px] text-highlight font-bold flex items-center gap-1 mt-0.5">
                   <Clock size={10} /> 2:00 PM
@@ -103,7 +108,7 @@ const MyBookingCard = ({ booking }) => {
                   Check Out
                 </p>
                 <p className="text-[10px] sm:text-xs font-bold text-light truncate">
-                  {booking.checkOut}
+                  {booking.checkOut.split("T")[0]}
                 </p>
                 <p className="text-[9px] text-highlight font-bold flex items-center gap-1 mt-0.5">
                   <Clock size={10} /> 11:00 AM
@@ -116,9 +121,14 @@ const MyBookingCard = ({ booking }) => {
         {/* Bottom Section */}
         <div className="w-full bg-white/2 px-2 md:px-4 py-4 sm:px-6 flex items-center justify-between gap-2">
           <div className="flex items-center gap-4">
+            {/* Amount */}
             <div className="flex flex-col">
               <span className="text-[10px] text-muted block tracking-tighter">
-                Amount Due
+                {isPartiallyPaid
+                  ? "Amount Due"
+                  : isFullyPaid
+                    ? "Amount Paid"
+                    : "Payable Amount"}
               </span>
               <div className="flex items-center gap-3">
                 <div className="flex items-baseline gap-1">
@@ -139,16 +149,9 @@ const MyBookingCard = ({ booking }) => {
             </div>
           </div>
 
+          {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/*  Invoice or Cancel */}
-            {hasPaidSomething ? (
-              <Button
-                className="p-2 text-muted hover:text-secondary hover:bg-secondary/10 rounded-xl transition-all border border-white/5"
-                title="Download Invoice"
-              >
-                <FileDown size={18} />
-              </Button>
-            ) : isCanceled ? null : (
+            {!hasPaidSomething && !isCanceled && (
               <Button
                 className="p-2.5 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
                 title="Cancel Booking"
@@ -164,7 +167,7 @@ const MyBookingCard = ({ booking }) => {
             ) : (
               <Button
                 disabled={isCanceled}
-                onClick={() => handlePay(booking)}
+                onClick={() => handlePayClick(booking)}
                 className={`bg-white text-black px-2 py-2 sm:px-8 sm:py-2.5 rounded-md font-black text-[10px] md:text-sm uppercase tracking-widest transition-all shadow-xl flex items-center gap-2 active:scale-95
                   ${!isCanceled && "hover:bg-secondary hover:text-light"}
                   `}

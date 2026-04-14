@@ -1,7 +1,7 @@
 import { handleApiError } from "@/lib/apiErrorHandler";
 import axiosInstance from "./axios";
 
-export const api = {
+export const apiClient = {
   // Request for a new registration
   requestRegister: async (data) => {
     try {
@@ -88,6 +88,16 @@ export const api = {
   signout: async () => {
     try {
       const res = await axiosInstance.get(`/auth/signout`);
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Create a payment
+  paymentRequest: async (data) => {
+    try {
+      const res = await axiosInstance.post(`/payments/makePayment`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
