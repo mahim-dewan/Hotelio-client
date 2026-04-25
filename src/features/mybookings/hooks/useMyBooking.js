@@ -11,6 +11,8 @@ export const useMyBooking = () => {
     setIsModalOpen,
     isProcessing,
     setIsProcessing,
+    isDownloading,
+    setIsDownloading,
   } = useContext(MyBookingContext);
 
   // API Call for create payment
@@ -27,12 +29,37 @@ export const useMyBooking = () => {
     setIsProcessing(false);
   };
 
+  // Download invoice PDF
+  const invoiceDownload = async (id) => {
+    try {
+      setIsDownloading(true);
+      const blob = await apiClient.invoiceDownload(id);
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Hotelio_Receipt";
+
+      document.body.appendChild(link);
+
+      link.click();
+      link.remove();
+
+      setIsDownloading(false);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      toast.error("Could not download receipt. Please try again.");
+    }
+  };
+
   return {
     selectedBooking,
     setSelectedBooking,
     isModalOpen,
     setIsModalOpen,
     isProcessing,
+    isDownloading,
     makePayment,
+    invoiceDownload,
   };
 };

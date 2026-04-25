@@ -12,9 +12,11 @@ import {
 import Button from "@/shared/components/Button";
 import { useMyBooking } from "../hooks/useMyBooking";
 import { getBookingPaymentStatus } from "../utils/bookingPaymentStatus";
+import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
 
 const MyBookingCard = ({ booking }) => {
-  const { setIsModalOpen, setSelectedBooking } = useMyBooking();
+  const { setIsModalOpen, setSelectedBooking, invoiceDownload, isDownloading } =
+    useMyBooking();
   const {
     isPartiallyPaid,
     isFullyPaid,
@@ -82,10 +84,16 @@ const MyBookingCard = ({ booking }) => {
               {/* Invoice Download */}
               {hasPaidSomething && (
                 <Button
+                  onClick={() => invoiceDownload(booking?._id)}
                   className="p-2 text-muted hover:text-secondary hover:bg-secondary/10 rounded-xl transition-all border border-white/5"
                   title="Download Invoice"
+                  disabled={isDownloading}
                 >
-                  <FileDown size={18} />
+                  {isDownloading ? (
+                    <LineSpinnerLoader size={20} />
+                  ) : (
+                    <FileDown size={18} />
+                  )}
                 </Button>
               )}
             </div>

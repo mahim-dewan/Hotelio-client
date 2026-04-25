@@ -103,4 +103,17 @@ export const apiClient = {
       return handleApiError(err);
     }
   },
+
+  // Create a payment
+  invoiceDownload: async (id) => {
+    try {
+      const res = await axiosInstance.get(`/bookings/${id}/invoice`, {
+        responseType: "blob",
+      });
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
 };
