@@ -1,5 +1,5 @@
 import { useAuth } from "@/context/AuthProvider";
-import { api } from "@/lib/apis";
+import { apiClient } from "@/lib/apis-client";
 import { TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 import { emailSchema } from "@/schemas/fields.schema";
 import { useState } from "react";
@@ -16,7 +16,7 @@ const useLogin = () => {
 
   // Handles user login
   const login = async (payload) => {
-    const res = await api.login(payload);
+    const res = await apiClient.login(payload);
 
     if (res?.success && res?.message) {
       toast.success(res.message);
@@ -37,7 +37,7 @@ const useLogin = () => {
       return;
     }
 
-    const res = await api.forgotPassword({ email: data });
+    const res = await apiClient.forgotPassword({ email: data });
 
     if (res.success) {
       toast.success(res?.message);
@@ -52,7 +52,7 @@ const useLogin = () => {
 
   // Handles password reset submission
   const resetSubmit = async (payload) => {
-    const res = await api.resetPassword(payload);
+    const res = await apiClient.resetPassword(payload);
 
     if (res.success) {
       toast.success(res?.message);
@@ -65,7 +65,7 @@ const useLogin = () => {
 
   //  Resend OTP
   const otpResend = async (payload) => {
-    const res = await api.resetOtpResend(payload);
+    const res = await apiClient.resetOtpResend(payload);
 
     if (res?.success) {
       toast.success(res?.message);

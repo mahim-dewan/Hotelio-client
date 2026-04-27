@@ -1,5 +1,5 @@
 "use client";
-import { api } from "@/lib/apis";
+import { apiClient } from "@/lib/apis-client";
 import { AUTH_READY, LOGIN_SUCCESS } from "@/reducers/auth/actions";
 import { authReducer, initialAuthState } from "@/reducers/auth/reducer";
 import { createContext, useContext, useEffect, useReducer } from "react";
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   // -----------------------------------
   useEffect(() => {
     const verifyUser = async () => {
-      const res = await api.verifyToken();
+      const res = await apiClient.verifyToken();
       if (res?.success) {
         dispatch(LOGIN_SUCCESS(res?.data));
         dispatch(AUTH_READY());

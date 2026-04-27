@@ -40,6 +40,8 @@ The Hotelio Frontend is built with Next.js to deliver a fast, scalable, and mode
 
 - Automatic disabled already booked dates
 
+- Supports dual-currency hotel booking payments with flexible 50% deposit or full payment.
+
 ## 🧑‍💻 Tech Stack
 
 - **Next.js** (App Router) for server-side rendering and routing
@@ -74,7 +76,6 @@ Hotelio-client/
 │   ├── contexts/
 │   ├── data/
 │   ├── features/
-│   ├── hooks/
 │   ├── lib/
 │   ├── reducers/
 │   ├── schemas/
@@ -149,6 +150,10 @@ npm run dev
 ## 🤝 Contribution
 
 Contributions, feedback, and suggestions are welcome. Feel free to open an issue or submit a pull request.
+
+## Credits
+
+Thanks to ChatGPT (OpenAI) and Gemini (Google) for helping me build this project.
 
 ## 📌 Author
 

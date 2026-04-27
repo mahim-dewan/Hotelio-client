@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { useAuth } from "@/context/AuthProvider";
-import { api } from "@/lib/apis";
+import { apiClient } from "@/lib/apis-client";
 import { LOGOUT, TOGGLE_AUTH_BOX } from "@/reducers/auth/actions";
 import ProfileModal from "./ProfileModal";
 import { navLinks } from "@/constants/navMenuItems";
@@ -48,7 +48,7 @@ const Navbar = () => {
    * Keeps API logic isolated
    */
   const handleSignOut = async () => {
-    await api.signout();
+    await apiClient.signout();
     setIsMenuOpen(false);
     dispatch(LOGOUT());
   };

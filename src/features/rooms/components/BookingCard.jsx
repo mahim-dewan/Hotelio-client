@@ -25,7 +25,7 @@ const BookingCard = ({ room }) => {
             {room?.discountPrice && room?.discountPercentage && (
               <span className="text-gray-400 line-through text-lg">
                 {currency === CURRENCY.USD
-                  ? `${CURRENCY_SYMBOL.USD} ${room.originalPrice}`
+                  ? `${CURRENCY_SYMBOL.USD} ${room?.originalPrice}`
                   : `${CURRENCY_SYMBOL.BDT} ${convertUSDtoBDT(room?.originalPrice, 125)}`}
               </span>
             )}
@@ -33,13 +33,13 @@ const BookingCard = ({ room }) => {
               {room?.discountPrice && room?.discountPercentage ? (
                 <span className="text-xl xl:text-3xl font-bold text-primary">
                   {currency === CURRENCY.USD
-                    ? `${CURRENCY_SYMBOL.USD} ${room.discountPrice}`
+                    ? `${CURRENCY_SYMBOL.USD} ${room?.discountPrice}`
                     : `${CURRENCY_SYMBOL.BDT} ${convertUSDtoBDT(room?.discountPrice, 125)}`}
                 </span>
               ) : (
                 <span className="text-xl xl:text-3xl font-bold text-primary">
                   {currency === CURRENCY.USD
-                    ? `${CURRENCY_SYMBOL.USD} ${room.originalPrice}`
+                    ? `${CURRENCY_SYMBOL.USD} ${room?.originalPrice}`
                     : `${CURRENCY_SYMBOL.BDT} ${convertUSDtoBDT(room?.originalPrice, 125)}`}
                 </span>
               )}
@@ -49,7 +49,7 @@ const BookingCard = ({ room }) => {
           </div>
           {room?.discountPercentage && (
             <div className="bg-highlight text-white px-3 py-1 rounded-lg font-bold animate-bounce">
-              Save {room.discountPercentage}%
+              Save {room?.discountPercentage}%
             </div>
           )}
         </div>

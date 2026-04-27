@@ -22,6 +22,6 @@ export const navLinks = [
 
 // Profile Modal navigation items
 export const profileMenuItems = [
-  { label: "My Bookings", icon: <Calendar />, path: "/my-bookings" },
+  { label: "My Bookings", icon: <Calendar />, path: "/mybookings" },
   { label: "Account Settings", icon: <Settings />, path: "/settings" },
 ];
