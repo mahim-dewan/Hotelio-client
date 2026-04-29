@@ -42,10 +42,10 @@ h6 {
     @apply bg-dark text-light px-8 py-2.5 rounded-md transition-all duration-500;
   }
   .btn-rounded {
-    @apply bg-primary text-light px-8 py-2.5 rounded-full transition-all duration-500;
+    @apply bg-primary font-semibold text-light px-8 py-2.5 rounded-full transition-all duration-500;
   }
   .btn-rounded-outline {
-    @apply border border-primary text-light px-8 py-2.5 rounded-full transition-all duration-500;
+    @apply border border-primary font-semibold text-light px-8 py-2.5 rounded-full transition-all duration-500;
   }
 }
 

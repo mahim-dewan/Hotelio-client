@@ -93,7 +93,7 @@ const Navbar = () => {
 
         {/* ================= Desktop (Right) Login Button ================= */}
         {!state.isAuthReady ? (
-          <LineSpinnerLoader className={"hidden md:block"} />
+          <LineSpinnerLoader size={30} className={"hidden md:block px-12"} />
         ) : state.user ? (
           <div className="hidden md:block">
             {/* Profile Trigger */}
@@ -135,7 +135,7 @@ const Navbar = () => {
 
         {/* ================= Mobile Menu Button ================= */}
         {!state.isAuthReady ? (
-          <LineSpinnerLoader className={"md:hidden"} />
+          <LineSpinnerLoader size={26} className={"md:hidden"} />
         ) : (
           <div className="flex items-center gap-3 md:hidden">
             <Menu

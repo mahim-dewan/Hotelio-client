@@ -48,10 +48,10 @@ const DiscountRooms = () => {
         </Swiper>
 
         {/* Custom Navigation Buttons */}
-        <button className="prev-btn hidden md:block absolute left-5 top-1/2 -translate-y-1/2 z-30 bg-white/80 p-3 rounded-full shadow-xl text-primary hover:bg-primary hover:text-white transition-all">
+        <button className="prev-btn hidden md:block absolute left-5 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-xl text-primary hover:bg-primary hover:text-white transition-all">
           <ChevronLeft size={28} />
         </button>
-        <button className="next-btn hidden md:block absolute right-5 top-1/2 -translate-y-1/2 z-30 bg-white/80 p-3 rounded-full shadow-xl text-primary hover:bg-primary hover:text-white transition-all">
+        <button className="next-btn hidden md:block absolute right-5 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-xl text-primary hover:bg-primary hover:text-white transition-all">
           <ChevronRight size={28} />
         </button>
       </div>
