@@ -11,7 +11,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`${className} ${disabled ? "cursor-not-allowed opacity-50" : " cursor-pointer hover:opacity-80 active:opacity-80"} `}
+      className={`${className} ${disabled ? "cursor-not-allowed opacity-100" : " cursor-pointer hover:opacity-90 active:opacity-90"} `}
       disabled={disabled}
     >
       {children}
