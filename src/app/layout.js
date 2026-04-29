@@ -5,6 +5,7 @@ import Navbar from "@/shared/layouts/Navbar";
 import AuthProvider from "@/context/AuthProvider";
 import AuthModal from "@/features/auth/components/AuthModal";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/shared/layouts/Footer";
 
 /* -------------------------------------------------------------------------- */
 /*                                Font Setup                                   */
@@ -91,6 +92,8 @@ export default function RootLayout({ children }) {
 
             {/* Page content */}
             {children}
+
+            <Footer />
           </main>
         </AuthProvider>
       </body>
