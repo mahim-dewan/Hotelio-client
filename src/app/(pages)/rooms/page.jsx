@@ -2,7 +2,7 @@ import DiscountRooms from "@/features/rooms/components/DiscountRooms";
 
 const Rooms = () => {
   return (
-    <section>
+    <section className="min-h-screen">
       <DiscountRooms />
     </section>
   );

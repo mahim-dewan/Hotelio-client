@@ -2,17 +2,22 @@ import { cookies } from "next/headers";
 import axiosInstance from "./axios";
 import { handleApiError } from "./apiErrorHandler";
 
+const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
+
 export const apiServer = {
   // Get all bookings data by User
   getBookings: async () => {
     try {
       const cookieStore = await cookies();
-      const res = await axiosInstance.get("/bookings/getBookingsByUser", {
+      const res = await fetch(`${BASE_API}/bookings/getBookingsByUser`, {
+        method: "GET",
         headers: {
           Cookie: cookieStore.toString(),
         },
+        cache: "no-store",
       });
-      return res.data;
+
+      return await res.json();
     } catch (err) {
       return handleApiError(err);
     }
@@ -22,16 +27,33 @@ export const apiServer = {
   getPaymentsByBookingIds: async (bookingIds) => {
     try {
       const cookieStore = await cookies();
-      const res = await axiosInstance.post(
-        `/payments/by-bookings`,
-        { bookingIds },
-        {
-          headers: {
-            Cookie: cookieStore.toString(),
-          },
+      const res = await fetch(`${BASE_API}/payments/by-bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
         },
-      );
-      return res.data;
+        body: JSON.stringify({ bookingIds }),
+        cache: "no-store",
+      });
+
+      return await res.json();
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Get single room by slug
+  getRoom: async (slug) => {
+    try {
+      const res = await fetch(`${BASE_API}/rooms/room/${slug}`, {
+        method: "GET",
+        next: {
+          revalidate: 600,
+        },
+      });
+
+      return await res.json();
     } catch (err) {
       return handleApiError(err);
     }

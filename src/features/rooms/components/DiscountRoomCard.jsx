@@ -12,6 +12,8 @@ const DiscountRoomCard = ({ room }) => {
         alt={room.title}
         width={1000}
         height={800}
+        unoptimized
+        priority
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-linear-to-t from-primary via-transparent to-black/20 opacity-80" />
@@ -57,7 +59,7 @@ const DiscountRoomCard = ({ room }) => {
             </p>
           </div>
           <Link
-            href={`/rooms/${room?._id}`}
+            href={`/rooms/${room?.slug}`}
             className="bg-white cursor-pointer text-primary p-3 rounded-xl hover:bg-highlight hover:text-white transition-all duration-300 transform active:scale-95"
           >
             <ChevronRight size={24} />

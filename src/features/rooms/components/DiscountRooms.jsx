@@ -1,6 +1,5 @@
 "use client";
 import DiscountRoomCard from "@/features/rooms/components/DiscountRoomCard";
-import { discountRooms } from "@/data/rooms";
 import { ChevronLeft, ChevronRight, HandCoins } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -9,8 +8,39 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useEffect, useState } from "react";
+import { apiClient } from "@/lib/apis-client";
+import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
 
 const DiscountRooms = () => {
+  const [rooms, setRooms] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // API call for exclusive rooms
+    const fetchRooms = async () => {
+      setIsLoading(true);
+      const res = await apiClient.getExclusiveRooms();
+      if (res?.success) {
+        setRooms(res?.data);
+      }
+      setIsLoading(false);
+    };
+
+    fetchRooms();
+  }, []);
+
+  if (isLoading)
+    return (
+      <LineSpinnerLoader
+        color="black"
+        size="40"
+        className="flex items-center justify-center min-h-96"
+      />
+    );
+
+  if (!rooms?.length) return null;
+
   return (
     <div className="py-10">
       <h2 className="text-3xl font-bold text-primary mb-8 ml-4 md:ml-10 flex gap-2 items-center">
@@ -40,7 +70,7 @@ const DiscountRooms = () => {
           }}
           speed={800}
         >
-          {discountRooms.map((room) => (
+          {rooms.map((room) => (
             <SwiperSlide key={room._id}>
               <DiscountRoomCard room={room} />
             </SwiperSlide>

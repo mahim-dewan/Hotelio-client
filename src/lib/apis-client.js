@@ -116,4 +116,59 @@ export const apiClient = {
       return handleApiError(err);
     }
   },
+
+  // Get exclusive rooms
+  getExclusiveRooms: async () => {
+    try {
+      const res = await axiosInstance.get(`/rooms/exclusive`);
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Get featured rooms
+  getFeaturedRooms: async () => {
+    try {
+      const res = await axiosInstance.get(`/rooms/featured`);
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Get family-friendly rooms
+  getFamilyFriendlyRooms: async () => {
+    try {
+      const res = await axiosInstance.get(`/rooms/family-friendly`);
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Get luxury rooms
+  getLuxuryRooms: async () => {
+    try {
+      const res = await axiosInstance.get(`/rooms/luxury`);
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
+  // Get budget-friendly rooms
+  getBudgetFriendlyRooms: async () => {
+    try {
+      const res = await axiosInstance.get(`/rooms/budget-friendly`);
+
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
 };
