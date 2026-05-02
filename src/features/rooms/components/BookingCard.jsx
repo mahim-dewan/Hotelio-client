@@ -6,6 +6,7 @@ import { useState } from "react";
 import DatePicker from "./DatePicker";
 import useBooking from "@/features/rooms/hooks/useBooking";
 import Button from "../../../shared/components/Button";
+import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
 
 const BookingCard = ({ room }) => {
   const [currency, setCurrency] = useState(CURRENCY.USD);
@@ -15,7 +16,7 @@ const BookingCard = ({ room }) => {
     check_out: "",
   });
 
-  const { handleReserve } = useBooking();
+  const { handleReserve, isLoading } = useBooking();
 
   return (
     <div className="lg:col-span-1">
@@ -82,9 +83,10 @@ const BookingCard = ({ room }) => {
 
         <Button
           onClick={() => handleReserve(bookData)}
-          className="w-full bg-primary cursor-pointer text-white py-4 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg shadow-(--color-primary)/20"
+          disabled={isLoading}
+          className="w-full h-16 bg-primary text-white py-4 rounded-xl font-bold"
         >
-          Reserve Now
+          {isLoading ? <LineSpinnerLoader className="m-0" /> : "Reserve Now"}
         </Button>
 
         <p className="text-center text-xs text-gray-400 mt-4">

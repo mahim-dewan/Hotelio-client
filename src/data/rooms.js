@@ -1,6 +1,6 @@
 export const discountRooms = [
   {
-    _id: 1,
+    _id: "69c3d5e6cb99e1b0db9d5891",
     image:
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800",
     gallery: [

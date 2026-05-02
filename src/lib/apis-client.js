@@ -94,6 +94,16 @@ export const apiClient = {
     }
   },
 
+  // Booking a room
+  bookingRequest: async (data) => {
+    try {
+      const res = await axiosInstance.post(`/bookings`, data);
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
   // Create a payment
   paymentRequest: async (data) => {
     try {
