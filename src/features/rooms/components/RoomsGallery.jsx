@@ -15,6 +15,7 @@ const RoomsGallery = ({ room }) => {
           src={room?.image}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           alt="Main"
+          unoptimized
         />
         <Button
           onClick={() => setIsOpenGallery(true)}
@@ -30,6 +31,7 @@ const RoomsGallery = ({ room }) => {
           src={room?.gallery[0]}
           className="h-full w-full object-cover"
           alt="Gallery 1"
+          unoptimized
         />
         <Image
           width={1000}
@@ -37,6 +39,7 @@ const RoomsGallery = ({ room }) => {
           src={room?.gallery[1]}
           className="h-full w-full object-cover"
           alt="Gallery 2"
+          unoptimized
         />
       </div>
       <div className="hidden md:block col-span-1 relative">
@@ -46,6 +49,7 @@ const RoomsGallery = ({ room }) => {
           src={room?.gallery[2]}
           className="h-full w-full object-cover"
           alt="Gallery 3"
+          unoptimized
         />
         <Button
           onClick={() => setIsOpenGallery(true)}

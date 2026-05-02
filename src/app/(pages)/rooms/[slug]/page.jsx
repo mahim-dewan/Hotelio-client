@@ -1,13 +1,22 @@
 import BookingCard from "@/features/rooms/components/BookingCard";
 import RoomContent from "@/features/rooms/components/RoomContent";
 import RoomsGallery from "@/features/rooms/components/RoomsGallery";
+import { apiServer } from "@/lib/apis-server";
 import { Star, ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { discountRooms } from "@/data/rooms";
 
 const RoomDetails = async ({ params }) => {
-  const { id } = await params;
-  const room = discountRooms?.find((room) => room._id == id);
+  const { slug } = await params;
+  // API call for room by slug
+  const res = await apiServer.getRoom(slug);
+  const room = res?.data || null;
+
+  if (!room)
+    return (
+      <h3 className="min-h-screen flex items-center justify-center text-highlight text-2xl">
+        {res?.message || "Something went wrong"}
+      </h3>
+    );
 
   return (
     <main className="min-h-screen bg-light">

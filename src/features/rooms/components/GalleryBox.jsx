@@ -50,6 +50,7 @@ const GalleryBox = ({ images, setIsOpen }) => {
                   width={1000}
                   height={800}
                   className="object-contain h-full w-full text-light"
+                  unoptimized
                 />
               </SwiperSlide>
             ))}
