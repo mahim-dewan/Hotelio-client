@@ -10,36 +10,30 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import { apiClient } from "@/lib/apis-client";
-import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
+import DiscountRoomSkeleton from "./skeletons/DiscountRoomSkeleton";
+import ErrorMessage from "@/shared/components/ErrorMessage";
 
 const DiscountRooms = () => {
-  const [rooms, setRooms] = useState([]);
+  const [res, setRes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const rooms = res?.data;
 
   useEffect(() => {
     // API call for exclusive rooms
     const fetchRooms = async () => {
       setIsLoading(true);
       const res = await apiClient.getExclusiveRooms();
-      if (res?.success) {
-        setRooms(res?.data);
-      }
+      setRes(res);
       setIsLoading(false);
     };
 
     fetchRooms();
   }, []);
 
-  if (isLoading)
-    return (
-      <LineSpinnerLoader
-        color="black"
-        size="40"
-        className="flex items-center justify-center min-h-96"
-      />
-    );
+  if (isLoading) return <DiscountRoomSkeleton />;
 
-  if (!rooms?.length) return null;
+  if (!res?.success || !rooms?.length)
+    return <ErrorMessage message={res?.message} />;
 
   return (
     <div className="py-10">

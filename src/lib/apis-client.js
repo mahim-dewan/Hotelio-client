@@ -138,17 +138,6 @@ export const apiClient = {
     }
   },
 
-  // Get featured rooms
-  getFeaturedRooms: async () => {
-    try {
-      const res = await axiosInstance.get(`/rooms/featured`);
-
-      return res.data;
-    } catch (err) {
-      return handleApiError(err);
-    }
-  },
-
   // Get family-friendly rooms
   getFamilyFriendlyRooms: async () => {
     try {
