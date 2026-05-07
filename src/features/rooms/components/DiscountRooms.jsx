@@ -1,5 +1,5 @@
 "use client";
-import DiscountRoomCard from "@/features/rooms/components/DiscountRoomCard";
+import DiscountRoomCard from "@/features/rooms/components/cards/DiscountRoomCard";
 import { ChevronLeft, ChevronRight, HandCoins } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";

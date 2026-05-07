@@ -1,4 +1,4 @@
-import BookingCard from "@/features/rooms/components/BookingCard";
+import BookingCard from "@/features/rooms/components/cards/BookingCard";
 import RoomContent from "@/features/rooms/components/RoomContent";
 import RoomsGallery from "@/features/rooms/components/RoomsGallery";
 import { apiServer } from "@/lib/apis-server";

@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturedRoomCard from "./FeaturedRoomCard";
+import FeaturedRoomCard from "./cards/FeaturedRoomCard";
 import { apiServer } from "@/lib/apis-server";
 import { Spotlight } from "lucide-react";
 import ErrorMessage from "@/shared/components/ErrorMessage";
