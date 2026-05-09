@@ -86,4 +86,19 @@ export const apiServer = {
       return handleApiError(err);
     }
   },
+
+  // Get luxury rooms
+  getFamilyFriendlyRooms: async () => {
+    try {
+      const res = await fetch(`${BASE_API}/rooms/family-friendly`, {
+        next: {
+          revalidate: 3600, // revalidation for 1 hour
+        },
+      });
+
+      return await res.json();
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
 };
