@@ -3,6 +3,7 @@
 import { useState } from "react";
 import FamilyRoomCard from "./cards/FamilyRoomCard";
 import TabFilterForFamilyRooms from "./TabFilterForFamilyRooms";
+import Link from "next/link";
 
 export function NoRoomsFound({ group }) {
   const label = group === "all" ? "families" : `${group} families`;
@@ -79,6 +80,14 @@ export default function FamilyRoomsClient({ rooms }) {
             <NoRoomsFound group={activeGroup} />
           </div>
         )}
+      </div>
+      <div className="mx-auto w-fit my-10">
+        <Link
+          href="/rooms"
+          className="btn-rounded-outline text-primary hover:bg-primary hover:text-light"
+        >
+          See More →
+        </Link>
       </div>
     </section>
   );

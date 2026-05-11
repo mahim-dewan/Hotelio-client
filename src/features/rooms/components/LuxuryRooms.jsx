@@ -4,7 +4,7 @@ import Link from "next/link";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 
 const LuxuryRooms = async () => {
-  const res = await apiServer.getLuxuryRooms();
+  const res = await apiServer.getRoomsByCategory("luxury");
   const rooms = res?.data?.slice(0, 6);
 
   if (!res?.success || !rooms.length) {

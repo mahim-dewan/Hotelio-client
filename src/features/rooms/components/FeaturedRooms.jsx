@@ -6,7 +6,7 @@ import ErrorMessage from "@/shared/components/ErrorMessage";
 import Link from "next/link";
 
 const FeaturedRooms = async () => {
-  const res = await apiServer.getFeaturedRooms();
+  const res = await apiServer.getRoomsByCategory("featured");
   const rooms = res?.data.slice(0, 6);
 
   if (!res?.success || !rooms.length) {

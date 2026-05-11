@@ -22,7 +22,7 @@ const DiscountRooms = () => {
     // API call for exclusive rooms
     const fetchRooms = async () => {
       setIsLoading(true);
-      const res = await apiClient.getExclusiveRooms();
+      const res = await apiClient.getRoomsByCategory("exclusive");
       setRes(res);
       setIsLoading(false);
     };

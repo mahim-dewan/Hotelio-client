@@ -58,39 +58,9 @@ export const apiServer = {
   },
 
   // Get featured rooms
-  getFeaturedRooms: async () => {
+  getRoomsByCategory: async (category) => {
     try {
-      const res = await fetch(`${BASE_API}/rooms/featured`, {
-        next: {
-          revalidate: 3600, // revalidation for 1 hour
-        },
-      });
-
-      return await res.json();
-    } catch (err) {
-      return handleApiError(err);
-    }
-  },
-
-  // Get luxury rooms
-  getLuxuryRooms: async () => {
-    try {
-      const res = await fetch(`${BASE_API}/rooms/luxury`, {
-        next: {
-          revalidate: 3600, // revalidation for 1 hour
-        },
-      });
-
-      return await res.json();
-    } catch (err) {
-      return handleApiError(err);
-    }
-  },
-
-  // Get luxury rooms
-  getFamilyFriendlyRooms: async () => {
-    try {
-      const res = await fetch(`${BASE_API}/rooms/family-friendly`, {
+      const res = await fetch(`${BASE_API}/rooms/${category}`, {
         next: {
           revalidate: 3600, // revalidation for 1 hour
         },
