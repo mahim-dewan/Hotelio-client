@@ -58,11 +58,12 @@ export const apiServer = {
   },
 
   // Get featured rooms
-  getRoomsByCategory: async (category) => {
+  getRoomsByCategory: async (category, page = 1) => {
     try {
-      const res = await fetch(`${BASE_API}/rooms/${category}`, {
+      const res = await fetch(`${BASE_API}/rooms/${category}?page=${page}`, {
         next: {
           revalidate: 3600, // revalidation for 1 hour
+          // tags: [`rooms-${category}-page-${page}`],
         },
       });
 
