@@ -1,5 +1,5 @@
 import ErrorMessage from "@/shared/components/ErrorMessage";
-import FamilyRoomsClient from "./FamilyRoomsClient";
+import FamilyRoomsClient from "../FamilyRoomsClient";
 import { apiServer } from "@/lib/apis-server";
 
 export default async function FamilyRoomsSection() {

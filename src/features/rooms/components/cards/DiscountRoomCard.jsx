@@ -22,7 +22,7 @@ const DiscountRoomCard = ({ room }) => {
       <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-highlight text-white px-4 py-1.5 rounded-full shadow-lg">
         <Sparkles size={16} className="animate-pulse" />
         <span className="text-sm font-bold tracking-tighter">
-          {room.discountPercentage}% LIMITED OFFER
+          {room?.discountPercentage}% LIMITED OFFER
         </span>
       </div>
 

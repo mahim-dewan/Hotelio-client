@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturedRoomCard from "./cards/FeaturedRoomCard";
+import FeaturedRoomCard from "../cards/FeaturedRoomCard";
 import { apiServer } from "@/lib/apis-server";
 import { Spotlight } from "lucide-react";
 import ErrorMessage from "@/shared/components/ErrorMessage";
@@ -27,7 +27,7 @@ const FeaturedRooms = async () => {
 
       <div className="mx-auto w-fit my-10">
         <Link
-          href="/rooms"
+          href="/rooms/featured-rooms"
           className="btn-rounded-outline text-primary hover:bg-primary hover:text-light"
         >
           See All →

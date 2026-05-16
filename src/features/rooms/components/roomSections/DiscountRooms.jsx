@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import { apiClient } from "@/lib/apis-client";
-import DiscountRoomSkeleton from "./skeletons/DiscountRoomSkeleton";
+import DiscountRoomSkeleton from "../skeletons/DiscountRoomSkeleton";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import Link from "next/link";
 

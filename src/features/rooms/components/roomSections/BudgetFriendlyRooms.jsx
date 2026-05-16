@@ -1,7 +1,7 @@
 import { apiServer } from "@/lib/apis-server";
 import Link from "next/link";
 import React from "react";
-import BudgetFriendlyRoomCard from "./cards/BudgetFriendlyRoomCard";
+import BudgetFriendlyRoomCard from "../cards/BudgetFriendlyRoomCard";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 
 const BudgetFriendlyRooms = async () => {

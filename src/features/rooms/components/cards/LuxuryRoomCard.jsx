@@ -85,7 +85,7 @@ const LuxuryRoomCard = ({ room }) => {
           </div>
 
           <Link
-            href={`rooms/${room?.slug}`}
+            href={`/rooms/${room?.slug}`}
             className="flex-1 max-w-40 group/btn relative overflow-hidden bg-linear-to-r from-secondary to-primary p-px rounded-lg transition-transform duration-300 active:scale-95 text-center"
           >
             <div className="bg-dark group-hover/btn:bg-transparent transition-colors duration-300 rounded-[7px] py-3 px-4">

@@ -127,7 +127,7 @@ const Pagination = ({ totalPages }) => {
         })}
 
         {/* ================= RIGHT SIDE DOTS + LAST PAGE ================= */}
-        {shouldShowRightDots ? (
+        {shouldShowRightDots && (
           <>
             <span className="flex items-center justify-center w-10 h-10 text-slate-400">
               ...
@@ -140,13 +140,6 @@ const Pagination = ({ totalPages }) => {
               {totalPages}
             </Button>
           </>
-        ) : totalPages - currentPage <= 1 ? null : (
-          <Button
-            onClick={() => goToPage(totalPages)}
-            className="flex items-center justify-center w-10 h-10 transition-all duration-200 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-primary active:scale-95"
-          >
-            {totalPages}
-          </Button>
         )}
       </div>
 

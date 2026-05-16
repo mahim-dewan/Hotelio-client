@@ -1,5 +1,5 @@
 import { apiServer } from "@/lib/apis-server";
-import LuxuryRoomCard from "./cards/LuxuryRoomCard";
+import LuxuryRoomCard from "../cards/LuxuryRoomCard";
 import Link from "next/link";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 
@@ -45,7 +45,7 @@ const LuxuryRooms = async () => {
 
       <div className="mx-auto w-fit my-10">
         <Link
-          href="/rooms"
+          href="/rooms/luxury-rooms"
           className="btn-rounded-outline text-highlight hover:bg-highlight border-highlight hover:text-light"
         >
           See All →
