@@ -38,7 +38,7 @@ const FamilyFriendlyRoomsPage = async ({ searchParams }) => {
 
         {/* --- Section 2: Room Inventory Grid Matrix --- */}
         <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-light/5 pb-4">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between border-light/5 pb-4">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-highlight" />
               <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 font-light">
