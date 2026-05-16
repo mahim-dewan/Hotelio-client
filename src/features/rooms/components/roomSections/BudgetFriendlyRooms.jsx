@@ -6,7 +6,7 @@ import ErrorMessage from "@/shared/components/ErrorMessage";
 
 const BudgetFriendlyRooms = async () => {
   const res = await apiServer.getRoomsByCategory("budget-friendly");
-  const rooms = res?.data || [];
+  const rooms = res?.data?.slice(0, 6) || [];
 
   if (!res?.success || !rooms.length) {
     return <ErrorMessage message={res?.message} />;
@@ -19,9 +19,9 @@ const BudgetFriendlyRooms = async () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
           <div>
             <h2 className="text-4xl md:text-5xl font-serif text-primary">
-              Smart Comfort
+              Smart Comfort & Budget Friendly
             </h2>
-            <p className="text-muted/80 mt-2 tracking-widest uppercase text-xs font-bold">
+            <p className="text-dark/80 mt-2 tracking-widest uppercase text-xs font-bold">
               Essential Luxury • Affordable Rates
             </p>
           </div>
@@ -36,7 +36,7 @@ const BudgetFriendlyRooms = async () => {
 
         <div className="mx-auto w-fit my-10">
           <Link
-            href="/rooms"
+            href="/rooms/budget-friendly-rooms"
             className="btn-rounded-outline text-primary hover:bg-primary hover:text-light"
           >
             See More →

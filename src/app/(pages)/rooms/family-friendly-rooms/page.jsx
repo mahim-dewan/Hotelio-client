@@ -1,24 +1,26 @@
-import DiscountRoomCard from "@/features/rooms/components/cards/DiscountRoomCard";
+import FamilyRoomCard from "@/features/rooms/components/cards/FamilyRoomCard";
+import { NoRoomsFound } from "@/features/rooms/components/FamilyRoomsClient";
 import RoomHeroHeader from "@/features/rooms/components/RoomHeroHeader";
+import TabFilterForFamilyRooms from "@/features/rooms/components/TabFilterForFamilyRooms";
 import { apiServer } from "@/lib/apis-server";
 import ErrorMessage from "@/shared/components/ErrorMessage";
 import Pagination from "@/shared/components/Pagination";
 import { Sparkles } from "lucide-react";
-import React from "react";
 
-const CATEGORY = "exclusive";
+const CATEGORY = "family-friendly";
 
-const ExclusiveRoomsPage = async ({ searchParams }) => {
+const FamilyFriendlyRoomsPage = async ({ searchParams }) => {
   const params = await searchParams;
   const page = Number(params?.page) || 1;
+  const capacity = params?.capacity || "all";
 
-  const res = await apiServer.getRoomsByCategory(CATEGORY, page);
+  const res = await apiServer.getRoomsByCategory(CATEGORY, page, capacity);
   const rooms = res?.data;
 
   if (!res?.success || !rooms?.length) {
     return (
       <ErrorMessage
-        message={res?.message || "No exclusive rooms found."}
+        message={res?.message || "No family-friendly rooms found."}
         className="min-h-screen"
       />
     );
@@ -42,28 +44,38 @@ const ExclusiveRoomsPage = async ({ searchParams }) => {
               <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 font-light">
                 Discovering{" "}
                 <span className="text-light font-medium">
-                  {res?.count || rooms.length}
+                  {res?.count || rooms?.length}
                 </span>{" "}
-                exclusive privileges
+                spacious family retreats
               </p>
             </div>
+
+            <TabFilterForFamilyRooms className={"bg-none text-light"} />
           </div>
 
-          {/* Clean, un-broken grid alignment mapping */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
-            {rooms.map((room) => (
-              <DiscountRoomCard key={room?._id} room={room} />
+          {/* Clean grid alignment mapping */}
+          <div className="grid grid-cols-12 gap-4 md:gap-6 animate-fadeIn">
+            {rooms?.map((room) => (
+              <FamilyRoomCard key={room._id} room={room} />
             ))}
+
+            {rooms?.length < 7 && (
+              <div className="col-span-6 md:col-span-3">
+                <NoRoomsFound group={capacity} />
+              </div>
+            )}
           </div>
         </div>
 
         {/* --- Section 3: Clean Structural Pagination Foothold --- */}
-        <div className="pt-8 border-t border-light/5 flex justify-center">
-          <Pagination totalPages={res?.totalPages || 1} />
-        </div>
+        {res?.totalPages > 1 && (
+          <div className="pt-8 border-t border-light/5 flex justify-center">
+            <Pagination totalPages={res?.totalPages || 1} />
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default ExclusiveRoomsPage;
+export default FamilyFriendlyRoomsPage;

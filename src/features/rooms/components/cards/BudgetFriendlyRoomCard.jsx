@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const BudgetFriendlyRoomCard = ({ index, room }) => {
   return (
@@ -22,7 +21,7 @@ const BudgetFriendlyRoomCard = ({ index, room }) => {
             Starting at
           </p>
           <p className="text-2xl text-center font-bold">
-            ${room?.discountPrice}
+            ${room?.discountPrice || room?.originalPrice}
           </p>
         </div>
 
@@ -57,7 +56,7 @@ const BudgetFriendlyRoomCard = ({ index, room }) => {
       {/* Action Overlay - Clean & Minimalist */}
       <div className="mt-4 flex justify-between items-center px-2">
         <span className="text-xs font-bold text-highlight uppercase tracking-[0.2em]">
-          {room?.specifications.view}
+          {room?.category}
         </span>
         <Link
           href={`/rooms/${room?.slug}`}

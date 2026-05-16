@@ -1,4 +1,4 @@
-import DiscountRoomCard from "@/features/rooms/components/cards/DiscountRoomCard";
+import BudgetFriendlyRoomCard from "@/features/rooms/components/cards/BudgetFriendlyRoomCard";
 import RoomHeroHeader from "@/features/rooms/components/RoomHeroHeader";
 import { apiServer } from "@/lib/apis-server";
 import ErrorMessage from "@/shared/components/ErrorMessage";
@@ -6,9 +6,9 @@ import Pagination from "@/shared/components/Pagination";
 import { Sparkles } from "lucide-react";
 import React from "react";
 
-const CATEGORY = "exclusive";
+const CATEGORY = "budget-friendly";
 
-const ExclusiveRoomsPage = async ({ searchParams }) => {
+const BudgetFriendlyRoomsPage = async ({ searchParams }) => {
   const params = await searchParams;
   const page = Number(params?.page) || 1;
 
@@ -18,7 +18,7 @@ const ExclusiveRoomsPage = async ({ searchParams }) => {
   if (!res?.success || !rooms?.length) {
     return (
       <ErrorMessage
-        message={res?.message || "No exclusive rooms found."}
+        message={res?.message || "No budget-friendly rooms found."}
         className="min-h-screen"
       />
     );
@@ -44,15 +44,19 @@ const ExclusiveRoomsPage = async ({ searchParams }) => {
                 <span className="text-light font-medium">
                   {res?.count || rooms.length}
                 </span>{" "}
-                exclusive privileges
+                smart value properties
               </p>
             </div>
           </div>
 
-          {/* Clean, un-broken grid alignment mapping */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
-            {rooms.map((room) => (
-              <DiscountRoomCard key={room?._id} room={room} />
+          {/* Clean grid alignment mapping */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {rooms.map((room, index) => (
+              <BudgetFriendlyRoomCard
+                key={room._id}
+                index={index}
+                room={room}
+              />
             ))}
           </div>
         </div>
@@ -66,4 +70,4 @@ const ExclusiveRoomsPage = async ({ searchParams }) => {
   );
 };
 
-export default ExclusiveRoomsPage;
+export default BudgetFriendlyRoomsPage;

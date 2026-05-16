@@ -13,5 +13,5 @@ export default async function FamilyRoomsSection() {
     );
   }
 
-  return <FamilyRoomsClient rooms={rooms} />;
+  return <FamilyRoomsClient initialRooms={rooms} totalPage={res?.totalPages} />;
 }

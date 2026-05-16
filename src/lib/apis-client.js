@@ -128,9 +128,9 @@ export const apiClient = {
   },
 
   // Get exclusive rooms
-  getRoomsByCategory: async (category) => {
+  getRoomsByCategory: async (category, query) => {
     try {
-      const res = await axiosInstance.get(`/rooms/${category}`);
+      const res = await axiosInstance.get(`/rooms/${category}?${query}`);
 
       return res.data;
     } catch (err) {
