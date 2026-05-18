@@ -41,6 +41,7 @@ const MyBookingCard = ({ booking }) => {
               alt="room"
               width={600}
               height={900}
+              unoptimized
               className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500"
             />
 

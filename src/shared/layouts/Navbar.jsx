@@ -70,7 +70,8 @@ const Navbar = () => {
         {/* ================= Desktop Navigation ================= */}
         <div className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map(({ name, path, role }) => {
-            const isActive = pathname === path;
+            const isActive =
+              pathname === path || pathname.startsWith(path + "/");
 
             if (role === "user") return null;
 
@@ -198,7 +199,7 @@ const MobileMenu = ({ isOpen, onClose, onSignOut, pathname }) => {
         onClick={() => onClose(false)}
       />
       <aside
-        className={`fixed top-0 left-0 z-[999] w-2/3 h-screen border-r border-muted flex flex-col gap-4 items-start bg-light text-primary transition-all duration-500 md:hidden ${
+        className={`fixed top-0 left-0 z-999 w-2/3 h-screen border-r border-muted flex flex-col gap-4 items-start bg-light text-primary transition-all duration-500 md:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

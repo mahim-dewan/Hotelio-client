@@ -1,4 +1,4 @@
-import BookingCard from "@/features/rooms/components/BookingCard";
+import BookingCard from "@/features/rooms/components/cards/BookingCard";
 import RoomContent from "@/features/rooms/components/RoomContent";
 import RoomsGallery from "@/features/rooms/components/RoomsGallery";
 import { apiServer } from "@/lib/apis-server";
@@ -32,7 +32,7 @@ const RoomDetails = async ({ params }) => {
           <div className="flex items-center gap-2 text-sm font-medium">
             <Star className="fill-highlight text-highlight" size={16} />
             <span>
-              {room?.rating} ({room?.reviewsCount} reviews)
+              {room?.rating || 4.6} ({room?.reviewsCount || 56} reviews)
             </span>
           </div>
         </div>

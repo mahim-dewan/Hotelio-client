@@ -3,9 +3,9 @@
 import { CURRENCY, CURRENCY_SYMBOL } from "@/constants/currency";
 import { convertUSDtoBDT } from "@/utils/currency";
 import { useState } from "react";
-import DatePicker from "./DatePicker";
+import DatePicker from "../DatePicker";
 import useBooking from "@/features/rooms/hooks/useBooking";
-import Button from "../../../shared/components/Button";
+import Button from "../../../../shared/components/Button";
 import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
 
 const BookingCard = ({ room }) => {
