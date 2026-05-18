@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const FeaturedRooms = async () => {
   const res = await apiServer.getRoomsByCategory("featured");
-  const rooms = res?.data.slice(0, 6);
+  const rooms = res?.data?.slice(0, 6);
 
   if (!res?.success || !rooms.length) {
     return <ErrorMessage message={res?.message} />;
