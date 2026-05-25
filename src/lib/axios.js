@@ -3,17 +3,17 @@ const { default: axios } = require("axios");
 // -----------------------------------
 // Base API URL
 // -----------------------------------
-const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
+const BASE_API = process.env.NEXT_PUBLIC_PUBLIC_API;
 
 // -----------------------------------
 // Axios instance
 // -----------------------------------
-const axiosInstance = axios.create({
-  baseURL: BASE_API,
+export const axiosAuth = axios.create({
+  baseURL: "/api/v1",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export default axiosInstance;
+export const axiosPublic = axios.create({ baseURL: BASE_API });
