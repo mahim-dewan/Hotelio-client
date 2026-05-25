@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { handleApiError } from "./apiErrorHandler";
 
-const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
+const BASE_API = process.env.BACKEND_URL;
 
 export const apiServer = {
   // Get all bookings data by User
@@ -57,15 +57,18 @@ export const apiServer = {
     }
   },
 
-  // Get featured rooms
+  // Get rooms by category
   getRoomsByCategory: async (category, page = 1, capacity) => {
     try {
-      const res = await fetch(`${BASE_API}/rooms/${category}?page=${page}&capacity=${capacity}`, {
-        next: {
-          revalidate: 3600, // revalidation for 1 hour
-          // tags: [`rooms-${category}-page-${page}`],
+      const res = await fetch(
+        `${BASE_API}/rooms/${category}?page=${page}&capacity=${capacity}`,
+        {
+          next: {
+            revalidate: 3600, // revalidation for 1 hour
+            tags: [`rooms-${category}-page-${page}`],
+          },
         },
-      });
+      );
 
       return await res.json();
     } catch (err) {

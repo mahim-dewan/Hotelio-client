@@ -1,11 +1,11 @@
 import { handleApiError } from "@/lib/apiErrorHandler";
-import axiosInstance from "./axios";
+import { axiosAuth, axiosPublic } from "./axios";
 
 export const apiClient = {
   // Request for a new registration
   requestRegister: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/request-register`, data);
+      const res = await axiosAuth.post(`/auth/request-register`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -15,7 +15,7 @@ export const apiClient = {
   // Verify with otp and create an user
   verifyRegister: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/verify-register`, data);
+      const res = await axiosAuth.post(`/auth/verify-register`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -25,7 +25,7 @@ export const apiClient = {
   // Resend Otp for registration
   resendRegistrationOtp: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/registerOtp-resend`, {
+      const res = await axiosAuth.post(`/auth/registerOtp-resend`, {
         email: data.email,
       });
       return res.data;
@@ -37,7 +37,7 @@ export const apiClient = {
   // Password forgot request
   forgotPassword: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/forgot-password`, data);
+      const res = await axiosAuth.post(`/auth/forgot-password`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -47,7 +47,7 @@ export const apiClient = {
   // Reset Password
   resetPassword: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/reset-password`, data);
+      const res = await axiosAuth.post(`/auth/reset-password`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -57,7 +57,7 @@ export const apiClient = {
   // Reset Password
   resetOtpResend: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/resetOtp-resend`, data);
+      const res = await axiosAuth.post(`/auth/resetOtp-resend`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -67,7 +67,7 @@ export const apiClient = {
   // User Login
   login: async (data) => {
     try {
-      const res = await axiosInstance.post(`/auth/login`, data);
+      const res = await axiosAuth.post(`/auth/login`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -77,7 +77,7 @@ export const apiClient = {
   // verify user's token
   verifyToken: async () => {
     try {
-      const res = await axiosInstance.get(`/auth/me`);
+      const res = await axiosAuth.get(`/auth/me`);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -87,7 +87,7 @@ export const apiClient = {
   //  logged in user sign out
   signout: async () => {
     try {
-      const res = await axiosInstance.get(`/auth/signout`);
+      const res = await axiosAuth.get(`/auth/signout`);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -97,7 +97,7 @@ export const apiClient = {
   // Booking a room
   bookingRequest: async (data) => {
     try {
-      const res = await axiosInstance.post(`/bookings`, data);
+      const res = await axiosAuth.post(`/bookings`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -107,7 +107,7 @@ export const apiClient = {
   // Create a payment
   paymentRequest: async (data) => {
     try {
-      const res = await axiosInstance.post(`/payments/makePayment`, data);
+      const res = await axiosAuth.post(`/payments/makePayment`, data);
       return res.data;
     } catch (err) {
       return handleApiError(err);
@@ -117,7 +117,7 @@ export const apiClient = {
   // Create a payment
   invoiceDownload: async (id) => {
     try {
-      const res = await axiosInstance.get(`/bookings/${id}/invoice`, {
+      const res = await axiosAuth.get(`/bookings/${id}/invoice`, {
         responseType: "blob",
       });
 
@@ -130,7 +130,7 @@ export const apiClient = {
   // Get exclusive rooms
   getRoomsByCategory: async (category, query) => {
     try {
-      const res = await axiosInstance.get(`/rooms/${category}?${query}`);
+      const res = await axiosPublic.get(`/rooms/${category}?${query}`);
 
       return res.data;
     } catch (err) {
