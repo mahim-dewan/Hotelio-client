@@ -65,7 +65,7 @@ const MyBookingCard = ({ booking }) => {
                         booking?.status === "pending"
                           ? "bg-dark/5 text-light "
                           : booking?.status === "confirmed"
-                            ? "bg-secondary"
+                            ? "bg-green-700"
                             : "bg-highlight text-dark "
                       }
                       `}
@@ -75,7 +75,7 @@ const MyBookingCard = ({ booking }) => {
                 </div>
 
                 <Link
-                  href={`/rooms/${booking?.room?._id}`}
+                  href={`/rooms/${booking?.room?.slug}`}
                   className="text-sm underline sm:text-xl font-bold text-light truncate leading-tight tracking-tight"
                 >
                   {booking.room.title}
