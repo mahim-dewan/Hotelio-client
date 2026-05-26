@@ -15,7 +15,10 @@ const HeroSection = () => {
         and warmth for business and leisure travelers alike.
       </p>
 
-      <Link href={"/"} className="group btn-secondary mt-10 flex items-center gap-4">
+      <Link
+        href={"/rooms"}
+        className="group btn-secondary mt-10 flex items-center gap-4"
+      >
         <span>Explore Rooms</span>
         <MoveRight className="group-hover:ml-2 transition-all" />
       </Link>

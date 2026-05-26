@@ -199,7 +199,7 @@ const MobileMenu = ({ isOpen, onClose, onSignOut, pathname }) => {
         onClick={() => onClose(false)}
       />
       <aside
-        className={`fixed top-0 left-0 z-999 w-2/3 h-screen border-r border-muted flex flex-col gap-4 items-start bg-light text-primary transition-all duration-500 md:hidden ${
+        className={`fixed top-0 left-0 z-999 w-2/3 h-dvh border-r border-muted flex flex-col gap-4 items-start bg-light text-primary transition-all duration-500 md:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -244,12 +244,6 @@ const MobileMenu = ({ isOpen, onClose, onSignOut, pathname }) => {
               >
                 <span>{icon}</span>
                 <span>{name}</span>
-                {/* <div
-                  className={`
-                h-0.5 transition-all duration-300 bg-primary
-                ${isActive ? "w-full" : "w-0 group-hover:w-full"}
-              `}
-                /> */}
               </Link>
             );
           })}
