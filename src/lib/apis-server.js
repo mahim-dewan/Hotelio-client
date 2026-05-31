@@ -75,4 +75,21 @@ export const apiServer = {
       return handleApiError(err);
     }
   },
+
+  // Get rooms by category
+  createContactMessage: async (data) => {
+    try {
+      const res = await fetch(`${BASE_API}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      return await res.json();
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
 };
