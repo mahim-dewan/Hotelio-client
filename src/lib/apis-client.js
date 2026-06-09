@@ -104,6 +104,16 @@ export const apiClient = {
     }
   },
 
+  // Cancel Booking
+  cancelBooking: async (data) => {
+    try {
+      const res = await axiosAuth.patch(`/bookings/${data}/cancel`);
+      return res.data;
+    } catch (err) {
+      return handleApiError(err);
+    }
+  },
+
   // Create a payment
   paymentRequest: async (data) => {
     try {
