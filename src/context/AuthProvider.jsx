@@ -1,8 +1,13 @@
 "use client";
 import { apiClient } from "@/lib/apis-client";
-import { AUTH_READY, LOGIN_SUCCESS } from "@/reducers/auth/actions";
+import {
+  AUTH_READY,
+  LOGIN_SUCCESS,
+  TOGGLE_AUTH_BOX,
+} from "@/reducers/auth/actions";
 import { authReducer, initialAuthState } from "@/reducers/auth/reducer";
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useSearchParams } from "next/navigation";
 
 // -----------------------------------
 // Create Auth Context
@@ -14,6 +19,19 @@ const AuthContext = createContext(null);
 // -----------------------------------
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialAuthState);
+
+  const searchParams = useSearchParams();
+
+  // -----------------------------------
+  // Open login modal from middleware redirect
+  // -----------------------------------
+  useEffect(() => {
+    const shouldOpenLogin = searchParams.get("login") === "true";
+
+    if (shouldOpenLogin) {
+      dispatch(TOGGLE_AUTH_BOX());
+    }
+  }, [searchParams]);
 
   // -----------------------------------
   // Verify user on initial app load
