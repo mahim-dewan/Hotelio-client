@@ -8,6 +8,7 @@ const MyBookingProvider = ({ children }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isCanceling, setIsCanceling] = useState(false);
 
   return (
     <MyBookingContext.Provider
@@ -20,6 +21,8 @@ const MyBookingProvider = ({ children }) => {
         setIsProcessing,
         isDownloading,
         setIsDownloading,
+        isCanceling,
+        setIsCanceling,
       }}
     >
       {children}

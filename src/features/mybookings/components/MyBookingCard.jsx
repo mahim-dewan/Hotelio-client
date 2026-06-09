@@ -15,8 +15,14 @@ import { getBookingPaymentStatus } from "../utils/bookingPaymentStatus";
 import LineSpinnerLoader from "@/shared/components/LineSpinnerLoader";
 
 const MyBookingCard = ({ booking }) => {
-  const { setIsModalOpen, setSelectedBooking, invoiceDownload, isDownloading } =
-    useMyBooking();
+  const {
+    setIsModalOpen,
+    setSelectedBooking,
+    invoiceDownload,
+    isDownloading,
+    cancelBooking,
+    isCanceling,
+  } = useMyBooking();
   const {
     isPartiallyPaid,
     isFullyPaid,
@@ -29,6 +35,8 @@ const MyBookingCard = ({ booking }) => {
     setSelectedBooking(b);
     setIsModalOpen(true);
   };
+
+  const canShowCancelButton = !hasPaidSomething && !isCanceled && !isCanceling;
 
   return (
     <div className="bg-dark border border-white/5 rounded-2xl overflow-hidden hover:border-secondary/30 transition-all duration-300 group shadow-2xl">
@@ -60,13 +68,13 @@ const MyBookingCard = ({ booking }) => {
                     {booking?.room?.category}
                   </span>
                   <span
-                    className={`text-[10px] tracking-widest font-bold px-2 py-0.5 rounded-full border border-white/10 uppercase 
+                    className={`text-[10px] text-light tracking-widest font-bold px-2 py-0.5 rounded-full border border-white/10 uppercase 
                       ${
                         booking?.status === "pending"
-                          ? "bg-dark/5 text-light "
+                          ? "bg-dark/5"
                           : booking?.status === "confirmed"
                             ? "bg-green-700"
-                            : "bg-highlight text-dark "
+                            : "bg-highlight "
                       }
                       `}
                   >
@@ -160,14 +168,18 @@ const MyBookingCard = ({ booking }) => {
 
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {!hasPaidSomething && !isCanceled && (
+            {canShowCancelButton ? (
               <Button
+                onClick={() => cancelBooking(booking?._id)}
+                disabled={isCanceled || isCanceling}
                 className="p-2.5 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-all"
                 title="Cancel Booking"
               >
                 <X size={18} />
               </Button>
-            )}
+            ) : isCanceling && !hasPaidSomething && !isCanceled ? (
+              <LineSpinnerLoader />
+            ) : null}
 
             {isFullyPaid ? (
               <div className="flex items-center gap-2 px-5 py-2 sm:px-8 sm:py-2.5 bg-secondary text-light rounded-xl text-[10px] font-black uppercase tracking-wider shadow-lg shadow-secondary/20">
@@ -177,8 +189,8 @@ const MyBookingCard = ({ booking }) => {
               <Button
                 disabled={isCanceled}
                 onClick={() => handlePayClick(booking)}
-                className={`bg-white text-black px-2 py-2 sm:px-8 sm:py-2.5 rounded-md font-black text-[10px] md:text-sm uppercase tracking-widest transition-all shadow-xl flex items-center gap-2 active:scale-95
-                  ${!isCanceled && "hover:bg-secondary hover:text-light"}
+                className={` text-black px-2 py-2 sm:px-8 sm:py-2.5 rounded-md font-black text-[10px] md:text-sm uppercase tracking-widest transition-all shadow-xl flex items-center gap-2 
+                  ${isCanceled ? "bg-muted/50" : "bg-white hover:bg-secondary hover:text-light active:scale-95"}
                   `}
               >
                 <CreditCard size={14} />
